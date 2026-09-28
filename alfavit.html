@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Русский алфавит · 俄語字母</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=PT+Serif:ital,wght@1,400&family=Marck+Script&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --plum:#3E2A47;        /* тёмно-сливовый текст */
+  --plum-soft:#7A6484;
+  --white:#FFFFFF;
+  --bg:#FFFBF7;
+  --coral:#FF8A7A;  --coral-d:#E0604F; --coral-l:#FFE3DE;
+  --mint:#7FD6B8;   --mint-d:#3FA985;  --mint-l:#DDF5EC;
+  --butter:#FFD86B; --butter-d:#D9A826; --butter-l:#FFF4CF;
+  --lilac:#B9A2E8;  --lilac-d:#8468C9; --lilac-l:#EEE7FB;
+  --line:#EFE4EA;
+  --radius:16px;
+  --shadow:0 2px 10px rgba(62,42,71,.08);
+  --hand:'Marck Script',cursive;
+  --ital:'PT Serif',Georgia,serif;
+  --print:'PT Sans','Noto Sans TC',sans-serif;
+  font-size:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{
+  font-family:'PT Sans','Noto Sans TC','Noto Sans JP','PingFang TC','Microsoft JhengHei',sans-serif;
+  background:var(--bg);color:var(--plum);min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;
+}
+.app{width:100%;max-width:640px;padding:14px 16px 24px;flex:1}
+button{font-family:inherit}
+
+/* ---------- шапка ---------- */
+.top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.back{
+  width:42px;height:42px;border-radius:12px;border:1px solid var(--line);
+  background:var(--white);font-size:20px;color:var(--plum);cursor:pointer;display:none;flex:0 0 auto;
+}
+.titlebox{flex:1;min-width:0}
+.titlebox h1{font-size:1.15rem;line-height:1.2}
+.titlebox .sub{font-size:.8rem;color:var(--plum-soft)}
+.stars{color:var(--butter-d);font-weight:700;white-space:nowrap}
+.langs{display:flex;gap:6px;justify-content:flex-end;margin-bottom:10px}
+.lang{
+  border:1.5px solid var(--line);background:var(--white);border-radius:999px;
+  padding:5px 11px;font-size:.8rem;cursor:pointer;color:var(--plum);
+}
+.lang.on{background:var(--lilac);border-color:var(--lilac);color:#fff;font-weight:700}
+
+/* ---------- общие ---------- */
+.screen{display:none}
+.screen.active{display:block;animation:fade .18s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.instr{
+  background:var(--lilac-l);border-left:4px solid var(--lilac);border-radius:10px;
+  padding:10px 12px;font-size:.88rem;margin-bottom:14px;line-height:1.5;
+}
+.tri .ru{font-weight:700}
+.tri .en{color:var(--plum-soft)}
+.tri .loc{color:var(--plum)}
+.btn{
+  border:none;border-radius:14px;padding:12px 18px;font-weight:700;font-size:.98rem;
+  cursor:pointer;color:#fff;background:var(--coral);
+}
+.btn:active{filter:brightness(.92)}
+.btn.mint{background:var(--mint-d)}
+.btn.lil{background:var(--lilac-d)}
+.btn.ghost{background:var(--white);color:var(--plum);border:1.5px solid var(--line)}
+.btn:disabled{opacity:.45;cursor:default}
+.row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.tag{
+  display:inline-block;font-size:.7rem;font-weight:700;border-radius:999px;
+  padding:2px 8px;vertical-align:middle;
+}
+.tag.l1{background:var(--coral-l);color:var(--coral-d)}
+.tag.l2{background:var(--mint-l);color:var(--mint-d)}
+.tag.l3{background:var(--butter-l);color:#A67C00}
+.tag.l0{background:var(--lilac-l);color:var(--lilac-d)}
+.st{color:var(--coral-d)}
+.hl{background:var(--butter);border-radius:4px;padding:0 1px}
+
+/* ---------- дом ---------- */
+.hero{
+  background:var(--butter-l);border:1px solid #F5E6B0;border-radius:20px;
+  padding:18px;margin-bottom:16px;position:relative;overflow:hidden;
+}
+.hero::after{
+  content:"Аа";position:absolute;right:-6px;bottom:-40px;font-family:var(--hand);
+  font-size:130px;color:rgba(255,138,122,.18);
+}
+.hero .big{font-size:1.45rem;font-weight:700;line-height:1.3}
+.hero .small{font-size:.85rem;color:var(--plum-soft);margin:6px 0 12px;position:relative;z-index:1}
+.hero .btn{position:relative;z-index:1}
+.menu{display:grid;gap:10px}
+.mitem{
+  display:flex;align-items:center;gap:14px;background:var(--white);border:1px solid var(--line);
+  border-radius:var(--radius);padding:12px 14px;cursor:pointer;box-shadow:var(--shadow);
+}
+.mitem:active{transform:scale(.98)}
+.mnum{
+  width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-weight:700;color:#fff;flex:0 0 auto;font-size:1.05rem;
+}
+.mtext{flex:1;min-width:0;line-height:1.3}
+.mtext .ru{font-weight:700}
+.mtext .sm{font-size:.8rem;color:var(--plum-soft)}
+.mstar{color:var(--butter-d);white-space:nowrap}
+
+/* ---------- азбука (сетка) ---------- */
+.legend{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:.75rem;margin-bottom:10px;color:var(--plum-soft)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:4px;vertical-align:-1px;margin-right:4px}
+.agrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.acard{
+  background:var(--white);border:1px solid var(--line);border-radius:14px;
+  padding:9px 4px 7px;text-align:center;cursor:pointer;box-shadow:var(--shadow);
+  border-top:5px solid var(--mint);
+}
+.acard:active{transform:scale(.95)}
+.acard.k-vh,.acard.k-vs{border-top-color:var(--coral)}
+.acard.k-ch,.acard.k-cs{border-top-color:var(--mint-d)}
+.acard.k-sg{border-top-color:var(--lilac)}
+.acard .p{font-size:1.7rem;font-weight:700;line-height:1.1}
+.acard .h{font-family:var(--hand);font-size:1.35rem;color:var(--lilac-d);line-height:1.2}
+.acard .n{font-size:.68rem;color:var(--plum-soft)}
+
+/* ---------- карточка буквы ---------- */
+.lnav{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.lnav .btn{padding:9px 14px}
+.lnav .pos{font-size:.85rem;color:var(--plum-soft)}
+.forms{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.form{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+  text-align:center;padding:10px 4px 8px;box-shadow:var(--shadow);
+}
+.form .g{font-size:3rem;line-height:1.15;min-height:3.6rem}
+.form.f-print .g{font-family:var(--print);font-weight:700}
+.form.f-ital .g{font-family:var(--ital);font-style:italic;color:var(--mint-d)}
+.form.f-hand .g{font-family:var(--hand);color:var(--lilac-d)}
+.form .cap{font-size:.7rem;color:var(--plum-soft);line-height:1.3}
+.panel{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+  padding:12px 14px;margin-bottom:12px;box-shadow:var(--shadow);
+}
+.panel h3{font-size:.8rem;color:var(--plum-soft);font-weight:700;margin-bottom:6px;letter-spacing:.02em}
+.sndrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+.pill{
+  display:flex;align-items:center;gap:8px;border:none;border-radius:999px;
+  padding:9px 15px;cursor:pointer;font-size:1rem;color:var(--plum);
+}
+.pill.name{background:var(--coral-l)}
+.pill.snd{background:var(--mint-l)}
+.pill b{font-size:1.1rem}
+.trn{font-family:var(--print);font-size:1.05rem;color:var(--mint-d);font-weight:700}
+.kind{font-size:.8rem;margin-bottom:6px}
+.note{font-size:.9rem;line-height:1.5}
+.hwnote{
+  background:var(--lilac-l);border-radius:10px;padding:8px 10px;margin-top:8px;font-size:.85rem;line-height:1.45;
+}
+.hwnote::before{content:"✍ ";}
+.words{display:grid;gap:8px}
+.wrow{
+  display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:12px;
+  padding:8px 10px;cursor:pointer;background:#FFFDFB;
+}
+.wrow:active{background:var(--butter-l)}
+.wrow .wp{font-size:1.3rem;font-weight:700;min-width:0}
+.wrow .wh{font-family:var(--hand);font-size:1.45rem;color:var(--lilac-d);white-space:nowrap}
+.wrow .wg{flex:1;font-size:.78rem;color:var(--plum-soft);line-height:1.3;text-align:right}
+.wrow .snd{color:var(--mint-d)}
+.trace{position:relative;height:190px;border:2px dashed var(--line);border-radius:var(--radius);background:
+  repeating-linear-gradient(to bottom,transparent 0 46px,#F3E6EC 46px 48px);overflow:hidden}
+.trace .ghost{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:var(--hand);font-size:130px;color:rgba(185,162,232,.28);pointer-events:none;user-select:none;
+}
+.trace canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:crosshair}
+
+/* ---------- квизы ---------- */
+.progress{height:8px;background:#F2E8EE;border-radius:99px;overflow:hidden;margin-bottom:14px}
+.progress i{display:block;height:100%;width:0;background:var(--mint-d);transition:width .25s}
+.qshow{
+  background:var(--white);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);
+  text-align:center;padding:14px 10px;margin-bottom:12px;min-height:110px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+}
+.qshow .gh{font-family:var(--hand);font-size:5rem;line-height:1.1;color:var(--lilac-d)}
+.qshow .gi{font-family:var(--ital);font-style:italic;font-size:5rem;line-height:1.1;color:var(--mint-d)}
+.qshow .gw{font-size:2.2rem;font-weight:700;letter-spacing:.04em}
+.qshow .gw .gap{display:inline-block;min-width:1.1em;border-bottom:4px solid var(--coral);color:var(--coral-d)}
+.qshow .gs{font-size:2rem;font-weight:700;letter-spacing:.2em}
+.qshow .gloss{font-size:.8rem;color:var(--plum-soft)}
+.bigplay{
+  display:inline-flex;align-items:center;gap:8px;border:none;background:var(--plum);color:#fff;
+  font-weight:700;font-size:1rem;padding:12px 22px;border-radius:16px;cursor:pointer;
+}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{
+  background:var(--white);border:2px solid var(--line);border-radius:var(--radius);
+  font-size:2rem;font-weight:700;padding:16px 6px;text-align:center;cursor:pointer;color:var(--plum);
+}
+.opt:active{transform:scale(.96)}
+.opt.ok{border-color:var(--mint-d);background:var(--mint-l)}
+.opt.no{border-color:var(--coral-d);background:var(--coral-l)}
+.opt.dim{opacity:.4;pointer-events:none}
+.feedback{min-height:30px;text-align:center;font-weight:700;margin:12px 0;font-size:1rem}
+.feedback.ok{color:var(--mint-d)}
+.feedback.no{color:var(--coral-d)}
+
+.result{text-align:center;background:var(--white);border-radius:20px;padding:26px 18px;box-shadow:var(--shadow)}
+.result h2{font-size:1.4rem}
+.result .rstars{font-size:2.3rem;letter-spacing:6px;margin:10px 0;color:var(--butter-d)}
+.result .score{font-size:2rem;font-weight:700;color:var(--mint-d)}
+.result p{color:var(--plum-soft);font-size:.9rem;margin:8px 0 18px;line-height:1.5}
+
+/* ---------- копирайт ---------- */
+.copy{
+  width:100%;text-align:center;font-size:.82rem;color:var(--plum-soft);
+  padding:14px 10px 18px;border-top:1px solid var(--line);background:var(--bg);
+}
+
+@media (max-width:380px){
+  .agrid{grid-template-columns:repeat(4,1fr);gap:6px}
+  .form .g{font-size:2.5rem}
+  .opt{font-size:1.6rem;padding:13px 4px}
+  .wrow .wg{display:none}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <div class="langs" id="langs"></div>
+
+  <div class="top">
+    <button class="back" id="backBtn" onclick="goHome()">←</button>
+    <div class="titlebox">
+      <h1 id="topTitle">Русский алфавит</h1>
+      <div class="sub" id="topSub"></div>
+    </div>
+    <div class="stars" id="topStars"></div>
+  </div>
+
+  <!-- ДОМ -->
+  <section class="screen active" id="scr-home">
+    <div class="hero">
+      <div class="big">А Б В Г Д …<br>33 буквы · 33 letters</div>
+      <div class="small" id="heroSmall"></div>
+      <button class="btn" id="playAllBtn" onclick="playAll()">🔊</button>
+    </div>
+    <div class="menu" id="menu"></div>
+  </section>
+
+  <!-- АЗБУКА -->
+  <section class="screen" id="scr-abc">
+    <div class="instr tri" id="abcInstr"></div>
+    <div class="legend" id="legend"></div>
+    <div class="agrid" id="agrid"></div>
+  </section>
+
+  <!-- ОДНА БУКВА -->
+  <section class="screen" id="scr-letter">
+    <div class="lnav">
+      <button class="btn ghost" onclick="stepLetter(-1)">←</button>
+      <span class="pos" id="lpos"></span>
+      <button class="btn ghost" onclick="stepLetter(1)">→</button>
+    </div>
+    <div class="forms" id="lforms"></div>
+    <div class="panel" id="lsound"></div>
+    <div class="panel"><h3 id="hWords"></h3><div class="words" id="lwords"></div></div>
+    <div class="panel">
+      <h3 id="hTrace"></h3>
+      <div class="trace" id="trace"><div class="ghost" id="traceGhost"></div><canvas id="traceCv"></canvas></div>
+      <div class="row" style="margin-top:10px">
+        <button class="btn ghost" onclick="clearTrace()" id="clearBtn"></button>
+        <button class="btn ghost" onclick="toggleCase()" id="caseBtn">А / а</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- КВИЗ -->
+  <section class="screen" id="scr-quiz">
+    <div class="progress"><i id="qbar"></i></div>
+    <div class="instr tri" id="qinstr"></div>
+    <div class="qshow" id="qshow"></div>
+    <div class="opts" id="qopts"></div>
+    <div class="feedback" id="qfb"></div>
+  </section>
+
+  <!-- РЕЗУЛЬТАТ -->
+  <section class="screen" id="scr-result">
+    <div class="result">
+      <h2 id="rtitle"></h2>
+      <div class="rstars" id="rstars"></div>
+      <div class="score" id="rscore"></div>
+      <p id="rmsg"></p>
+      <div class="row">
+        <button class="btn ghost" onclick="retryModule()" id="retryBtn"></button>
+        <button class="btn mint" onclick="goHome()" id="menuBtn"></button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="copy">© 2026–2046 耿華</footer>
+
+<script>
+/* ============================================================
+   РУССКИЙ АЛФАВИТ · 33 буквы
+   название · звук · курсив · рукописная форма · слова уроков 1–3
+   ============================================================ */
+
+/* ---------- язык комментариев ---------- */
+const LANGS = [['zh','中文'],['ja','日本語'],['vi','Tiếng Việt']];
+let LANG = 'zh';
+try{
+  const s = localStorage.getItem('abc_lang');
+  if(s && LANGS.some(l=>l[0]===s)) LANG = s;
+  else {
+    const n = (navigator.language||'').toLowerCase();
+    if(n.startsWith('ja')) LANG='ja'; else if(n.startsWith('vi')) LANG='vi';
+  }
+}catch(e){}
+
+/* ---------- слова уроков 1–3 (ударение — U+0301) ----------
+   l: номер урока; 0 = ★ слово «на будущее» (буквы Ц, Щ, Ъ ещё не встречались) */
+const FN = {en:'female name',zh:'女生名字',ja:'女性の名前',vi:'tên nữ'};
+const MN = {en:'male name',zh:'男生名字',ja:'男性の名前',vi:'tên nam'};
+const W = {
+ /* урок 1 */
+ 'как':      {l:1,en:'how',zh:'怎麼',ja:'どう',vi:'thế nào'},
+ 'тебя́':    {l:1,en:'you (object)',zh:'你（受格）',ja:'君を',vi:'bạn (tân ngữ)'},
+ 'зову́т':   {l:1,en:'(they) call',zh:'叫（名字）',ja:'（名前を）呼ぶ',vi:'gọi (tên)'},
+ 'меня́':    {l:1,en:'me',zh:'我（受格）',ja:'私を',vi:'tôi (tân ngữ)'},
+ 'А́нна':    {l:1,...FN}, 'Е́ва':{l:1,...FN}, 'Зо́я':{l:1,...FN}, 'Ка́тя':{l:1,...FN},
+ 'Я́на':     {l:1,...FN}, 'Ири́на':{l:1,...FN}, 'О́льга':{l:1,...FN}, 'Ната́лья':{l:1,...FN},
+ 'Ю́ля':     {l:1,...FN}, 'Ма́ша':{l:1,...FN},
+ 'Анто́н':   {l:1,...MN}, 'Во́ва':{l:1,...MN}, 'Ива́н':{l:1,...MN}, 'Ю́рий':{l:1,...MN},
+ 'Пётр':     {l:1,...MN}, 'Лёша':{l:1,...MN}, 'Серге́й':{l:1,...MN}, 'Серёжа':{l:1,...MN},
+ 'Же́ня':    {l:1,...MN}, 'Са́ша':{l:1,...MN},
+ 'А́нечка':  {l:1,en:'Anna (affectionate)',zh:'安娜（暱稱）',ja:'アンナ（愛称）',vi:'Anna (tên thân mật)'},
+ /* урок 2 */
+ 'приве́т':  {l:2,en:'hi',zh:'嗨',ja:'やあ',vi:'chào'},
+ 'до́брый':  {l:2,en:'good (Добрый день!)',zh:'美好的（日安！）',ja:'良い（こんにちは！）',vi:'tốt lành (Chào buổi chiều!)'},
+ 'день':     {l:2,en:'day',zh:'天、日',ja:'日',vi:'ngày'},
+ 'дела́':    {l:2,en:'things (Как дела?)',zh:'事情（你好嗎？）',ja:'調子（元気？）',vi:'công việc (Bạn khỏe không?)'},
+ 'хорошо́':  {l:2,en:'well, fine',zh:'很好',ja:'いい、元気',vi:'tốt'},
+ 'пло́хо':   {l:2,en:'badly',zh:'不好',ja:'悪い',vi:'tệ'},
+ 'норма́льно':{l:2,en:'OK',zh:'還好',ja:'まあまあ',vi:'bình thường'},
+ 'обы́чно':  {l:2,en:'usually',zh:'平常',ja:'いつも通り',vi:'như thường lệ'},
+ 'пого́да':  {l:2,en:'weather',zh:'天氣',ja:'天気',vi:'thời tiết'},
+ 'уро́к':    {l:2,en:'lesson',zh:'課',ja:'課、レッスン',vi:'bài học'},
+ 'два':      {l:2,en:'two',zh:'二',ja:'二',vi:'hai'},
+ 'три':      {l:2,en:'three',zh:'三',ja:'三',vi:'ba'},
+ /* урок 3 */
+ 'я':        {l:3,en:'I',zh:'我',ja:'私',vi:'tôi'},
+ 'ты':       {l:3,en:'you',zh:'你',ja:'君',vi:'bạn'},
+ 'он':       {l:3,en:'he',zh:'他',ja:'彼',vi:'anh ấy'},
+ 'она́':     {l:3,en:'she',zh:'她',ja:'彼女',vi:'cô ấy'},
+ 'мы':       {l:3,en:'we',zh:'我們',ja:'私たち',vi:'chúng tôi'},
+ 'вы':       {l:3,en:'you (pl. / polite)',zh:'你們／您',ja:'あなた（方）',vi:'các bạn / ngài'},
+ 'отку́да':  {l:3,en:'where from',zh:'從哪裡',ja:'どこから',vi:'từ đâu'},
+ 'куда́':    {l:3,en:'where to',zh:'去哪裡',ja:'どこへ',vi:'đi đâu'},
+ 'из':       {l:3,en:'from',zh:'從…（來）',ja:'〜から',vi:'từ'},
+ 'Росси́я':  {l:3,en:'Russia',zh:'俄羅斯',ja:'ロシア',vi:'Nga'},
+ 'Тайва́нь': {l:3,en:'Taiwan',zh:'台灣',ja:'台湾',vi:'Đài Loan'},
+ 'Кита́й':   {l:3,en:'China',zh:'中國',ja:'中国',vi:'Trung Quốc'},
+ 'Япо́ния':  {l:3,en:'Japan',zh:'日本',ja:'日本',vi:'Nhật Bản'},
+ 'Вьетна́м': {l:3,en:'Vietnam',zh:'越南',ja:'ベトナム',vi:'Việt Nam'},
+ 'Аме́рика': {l:3,en:'America',zh:'美國',ja:'アメリカ',vi:'Mỹ'},
+ 'Коре́я':   {l:3,en:'Korea',zh:'韓國',ja:'韓国',vi:'Hàn Quốc'},
+ 'Москва́':  {l:3,en:'Moscow',zh:'莫斯科',ja:'モスクワ',vi:'Mát-xcơ-va'},
+ 'Тайбэ́й':  {l:3,en:'Taipei',zh:'台北',ja:'台北',vi:'Đài Bắc'},
+ 'Хано́й':   {l:3,en:'Hanoi',zh:'河內',ja:'ハノイ',vi:'Hà Nội'},
+ 'Гаосю́н':  {l:3,en:'Kaohsiung',zh:'高雄',ja:'高雄',vi:'Cao Hùng'},
+ 'Чжунли́':  {l:3,en:'Zhongli',zh:'中壢',ja:'中壢',vi:'Trung Lịch'},
+ 'Хонсю́':   {l:3,en:'Honshu',zh:'本州',ja:'本州',vi:'Honshu'},
+ 'Хокка́йдо':{l:3,en:'Hokkaido',zh:'北海道',ja:'北海道',vi:'Hokkaido'},
+ 'го́род':   {l:3,en:'city',zh:'城市',ja:'都市、町',vi:'thành phố'},
+ 'о́стров':  {l:3,en:'island',zh:'島',ja:'島',vi:'hòn đảo'},
+ 'зефи́р':   {l:3,en:'zefir (sweet)',zh:'俄式棉花糖',ja:'ゼフィール（お菓子）',vi:'kẹo zefir'},
+ 'пастила́': {l:3,en:'pastila (sweet)',zh:'俄式果泥軟糖',ja:'パスチラ（お菓子）',vi:'kẹo pastila'},
+ 'шокола́д': {l:3,en:'chocolate',zh:'巧克力',ja:'チョコレート',vi:'sô-cô-la'},
+ /* ★ на будущее */
+ 'пи́цца':   {l:0,en:'pizza',zh:'披薩',ja:'ピザ',vi:'pizza'},
+ 'борщ':     {l:0,en:'borscht',zh:'羅宋湯',ja:'ボルシチ',vi:'súp borsch'},
+ 'объе́кт':  {l:0,en:'object',zh:'物體、對象',ja:'対象、物体',vi:'đối tượng'},
+ 'э́то':     {l:0,en:'this (is)',zh:'這（是）',ja:'これ（は）',vi:'đây (là)'}
+};
+
+/* ---------- 33 буквы ----------
+   nm — название буквы; say — как озвучить название (TTS ненадёжен на одиночных литерах);
+   tr — звук (упрощённая латинская транскрипция курса); k — тип;
+   snd — что прочитать как «звук» (голые согласные синтезатор не произносит — даём слоги) */
+const L = [
+ {L:'А',nm:'а',say:'ааа',tr:'/a/',k:'vh',snd:'ааа',w:['А́нна','как','Аме́рика'],
+  n:{ru:'Рот широко открыт.',en:'Like “a” in “father”.',zh:'像 ㄚ，嘴巴張大。',ja:'日本語の「ア」。',vi:'Như “a” trong “ba”.'}},
+ {L:'Б',nm:'бэ',say:'бэ.',tr:'/b/',k:'cp',snd:'ба, бо, бу',w:['тебя́','до́брый','Тайбэ́й'],
+  n:{ru:'Звонкий: голосовые связки дрожат.',en:'Like “b” in “book” — voiced.',zh:'像 ㄅ，但聲帶要震動（有聲）。',ja:'「バ」の b（濁音）。',vi:'Như “b” trong “bà”.'},
+  hw:{ru:'Рукописная б похожа на цифру 6.',en:'Handwritten б looks like the digit 6.',zh:'手寫的 б 像數字 6。',ja:'手書きの б は数字の 6 に似ている。',vi:'б viết tay giống số 6.'}},
+ {L:'В',nm:'вэ',say:'вэ.',tr:'/v/',k:'cp',snd:'ва, во, ву',w:['зову́т','Во́ва','вы','Вьетна́м'],
+  n:{ru:'Верхние зубы касаются нижней губы.',en:'Like “v” in “very”.',zh:'像英文 v，上齒碰下唇。',ja:'英語の v。上の歯で下唇に触れる。',vi:'Như “v” trong “và”.'}},
+ {L:'Г',nm:'гэ',say:'гэ.',tr:'/g/',k:'cp',snd:'га, го, гу',w:['пого́да','го́род','Гаосю́н'],
+  n:{ru:'Звонкий, как g в «go».',en:'Like “g” in “go”.',zh:'像 ㄍ，但聲帶要震動。',ja:'「ガ」の g。',vi:'Như “g” trong “ga”.'}},
+ {L:'Д',nm:'дэ',say:'дэ.',tr:'/d/',k:'cp',snd:'да, до, ду',w:['дела́','день','два','отку́да'],
+  n:{ru:'Звонкий, кончик языка у зубов.',en:'Like “d” in “do”.',zh:'像 ㄉ，但聲帶要震動。',ja:'「ダ」の d。',vi:'Như “đ” trong “đi”.'},
+  hw:{ru:'Курсивная и рукописная д похожа на g или ∂.',en:'Italic / handwritten д looks like g or ∂.',zh:'斜體和手寫的 д 像 g 或 ∂。',ja:'斜体・手書きの д は g や ∂ に見える。',vi:'д in nghiêng / viết tay trông như g hoặc ∂.'}},
+ {L:'Е',nm:'е',say:'еее',tr:'/ye/ · /ʼe/',k:'vs',snd:'еее',w:['Е́ва','меня́','приве́т'],
+  n:{ru:'Два звука: й + э. После согласного делает его мягким.',en:'Like “ye” in “yes”; after a consonant it makes it soft.',zh:'像 ㄧㄝ；在子音後面讓子音變軟。',ja:'「イェ」。子音の後では子音を軟らかくする。',vi:'Như “ye” (“yê”); sau phụ âm làm mềm phụ âm.'}},
+ {L:'Ё',nm:'ё',say:'ёёё',tr:'/yo/ · /ʼo/',k:'vs',snd:'ёёё',w:['Пётр','Лёша','Серёжа'],
+  n:{ru:'Два звука: й + о. Всегда под ударением!',en:'Like “yo” in “yogurt”; always stressed.',zh:'像 ㄧㄛ，永遠是重音。',ja:'「ヨ」。いつもアクセントがある。',vi:'Như “yo” (“yô”); luôn mang trọng âm.'},
+  hw:{ru:'Точки над ё часто не пишут: Пётр = Петр.',en:'The two dots are often left out: Пётр = Петр.',zh:'ё 上的兩點常常省略：Пётр = Петр。',ja:'ё の点はよく省略される：Пётр = Петр。',vi:'Hai chấm trên ё thường bị lược bỏ: Пётр = Петр.'}},
+ {L:'Ж',nm:'жэ',say:'жэ.',tr:'/zh/',k:'ch',snd:'жа, жо, жу',w:['Же́ня','Серёжа','Чжунли́'],
+  n:{ru:'Звонкий и всегда твёрдый, язык назад.',en:'Like “s” in “pleasure”, but harder.',zh:'接近 ㄖ，捲舌、有摩擦，一直是硬音。',ja:'「ジュ」に近いが、舌を後ろに引く。',vi:'Gần giống “s” trong tiếng Anh “pleasure”.'}},
+ {L:'З',nm:'зэ',say:'зэ.',tr:'/z/',k:'cp',snd:'за, зо, зу',w:['зову́т','Зо́я','зефи́р'],
+  n:{ru:'Звонкий, как пчела: з-з-з.',en:'Like “z” in “zoo”.',zh:'像英文 z，像蜜蜂的聲音。',ja:'「ザ」の z。',vi:'Như “d” giọng Bắc (“dạ”).'},
+  hw:{ru:'з похожа на цифру 3.',en:'з looks like the digit 3.',zh:'з 像數字 3。',ja:'з は数字の 3 に似ている。',vi:'з giống số 3.'}},
+ {L:'И',nm:'и',say:'иии',tr:'/i/',k:'vs',snd:'иии',w:['Ива́н','приве́т','из','Кита́й'],
+  n:{ru:'Как ㄧ. Делает согласный перед собой мягким.',en:'Like “ee” in “see”; softens the consonant before it.',zh:'像 ㄧ，讓前面的子音變軟。',ja:'「イ」。前の子音を軟らかくする。',vi:'Như “i” trong “đi”; làm mềm phụ âm trước.'},
+  hw:{ru:'Курсивная и = u!',en:'Italic и looks like u!',zh:'斜體 и 看起來像 u！',ja:'斜体の и は u に見える！',vi:'и in nghiêng trông như u!'}},
+ {L:'Й',nm:'и кра́ткое',say:'и краткое.',tr:'/j/',k:'cs',snd:'ай, ой, уй',w:['Серге́й','до́брый','Кита́й','Тайва́нь'],
+  n:{ru:'Короткое «и», не слог: Тай-вань.',en:'Short “y” as in “boy”.',zh:'短短的 ㄧ，像「愛」的尾巴。',ja:'短い「イ」。「アイ」のイ。',vi:'Như “y” trong “tay”.'},
+  hw:{ru:'Курсивная й = u с «шапочкой»: ŭ.',en:'Italic й looks like u with a cap: ŭ.',zh:'斜體 й 像戴帽子的 u：ŭ。',ja:'斜体の й は帽子付きの u：ŭ。',vi:'й in nghiêng như u có mũ: ŭ.'}},
+ {L:'К',nm:'ка',say:'ка.',tr:'/k/',k:'cp',snd:'ка, ко, ку',w:['как','Ка́тя','уро́к','Коре́я'],
+  n:{ru:'Без придыхания!',en:'Like “k”, but no puff of air.',zh:'像 ㄍ（不送氣！），不是 ㄎ。',ja:'「カ」の k。息を強く出さない。',vi:'Như “c” trong “cá” (không bật hơi).'}},
+ {L:'Л',nm:'эль',say:'эль.',tr:'/l/',k:'cp',snd:'ла, ло, лу',w:['О́льга','дела́','пло́хо','пастила́'],
+  n:{ru:'Твёрдое л «тёмное»: язык назад.',en:'Like “l” in “milk” (dark l).',zh:'像 ㄌ，但舌根往後。',ja:'英語の l（ラ行とは違う）。',vi:'Như “l” trong “là”, lưỡi lùi về sau.'},
+  hw:{ru:'Рукописная л начинается с маленького крючка снизу.',en:'Handwritten л starts with a small hook at the bottom.',zh:'手寫 л 從下面的小勾開始寫。',ja:'手書きの л は下の小さなフックから書き始める。',vi:'л viết tay bắt đầu bằng một móc nhỏ ở dưới.'}},
+ {L:'М',nm:'эм',say:'эм.',tr:'/m/',k:'cp',snd:'ма, мо, му',w:['меня́','Ма́ша','мы','Москва́'],
+  n:{ru:'Губы сомкнуты.',en:'Like “m” in “mom”.',zh:'像 ㄇ。',ja:'「マ」の m。',vi:'Như “m” trong “mẹ”.'},
+  hw:{ru:'Рукописная м тоже начинается с крючка снизу.',en:'Handwritten м also starts with a small hook.',zh:'手寫 м 也從下面的小勾開始。',ja:'手書きの м も小さなフックから始まる。',vi:'м viết tay cũng bắt đầu bằng móc nhỏ.'}},
+ {L:'Н',nm:'эн',say:'эн.',tr:'/n/',k:'cp',snd:'на, но, ну',w:['А́нна','Анто́н','норма́льно','она́'],
+  n:{ru:'Кончик языка у зубов.',en:'Like “n” in “no”.',zh:'像 ㄋ；字尾也是 -n。',ja:'「ナ」の n。',vi:'Như “n” trong “nam”.'},
+  hw:{ru:'Не путай: печатная Н — это не латинская H!',en:'Careful: Н is “n”, not Latin H!',zh:'注意：Н 是 n，不是英文 H！',ja:'注意：Н は n の音。ラテン文字の H ではない！',vi:'Chú ý: Н là “n”, không phải H Latinh!'}},
+ {L:'О',nm:'о',say:'ооо',tr:'/o/',k:'vh',snd:'ооо',w:['Анто́н','хорошо́','он','о́стров'],
+  n:{ru:'Губы круглые. Без ударения звучит как а!',en:'Round lips; unstressed it sounds like “a”!',zh:'像 ㄛ，嘴唇圓；不是重音時聽起來像 ㄚ！',ja:'「オ」。アクセントがないと「ア」に近い！',vi:'Như “ô”; khi không nhấn đọc gần như “a”!'}},
+ {L:'П',nm:'пэ',say:'пэ.',tr:'/p/',k:'cp',snd:'па, по, пу',w:['Пётр','приве́т','пого́да','пастила́'],
+  n:{ru:'Без придыхания!',en:'Like “p”, but no puff of air.',zh:'像 ㄅ（不送氣！），不是 ㄆ。',ja:'「パ」の p。息を強く出さない。',vi:'Như “p” trong “pin”, không bật hơi.'},
+  hw:{ru:'Курсивная п = n!',en:'Italic п looks like n!',zh:'斜體 п 看起來像 n！',ja:'斜体の п は n に見える！',vi:'п in nghiêng trông như n!'}},
+ {L:'Р',nm:'эр',say:'эр.',tr:'/r/',k:'cp',snd:'ра, ро, ру',w:['Ири́на','приве́т','три','Росси́я'],
+  n:{ru:'Кончик языка дрожит: р-р-р!',en:'Rolled (trilled) “r”.',zh:'彈舌音，舌尖要震動。',ja:'巻き舌の r。',vi:'Như “r” rung lưỡi.'},
+  hw:{ru:'Не путай: Р — это «р», а не латинская P!',en:'Careful: Р is “r”, not Latin P!',zh:'注意：Р 是 r，不是英文 P！',ja:'注意：Р は r の音。P ではない！',vi:'Chú ý: Р là “r”, không phải P Latinh!'}},
+ {L:'С',nm:'эс',say:'эс.',tr:'/s/',k:'cp',snd:'са, со, су',w:['Са́ша','Серге́й','Росси́я','Москва́'],
+  n:{ru:'Глухой, как ㄙ.',en:'Like “s” in “sun”.',zh:'像 ㄙ。',ja:'「サ」の s。',vi:'Như “x” trong “xa”.'},
+  hw:{ru:'Не путай: С — это «с», а не латинская C [k]!',en:'Careful: С is “s”, not a “k” sound!',zh:'注意：С 唸 s，不唸 k！',ja:'注意：С は s の音！',vi:'Chú ý: С đọc là “s”, không phải “k”!'}},
+ {L:'Т',nm:'тэ',say:'тэ.',tr:'/t/',k:'cp',snd:'та, то, ту',w:['тебя́','Анто́н','три','ты'],
+  n:{ru:'Без придыхания!',en:'Like “t”, but no puff of air.',zh:'像 ㄉ（不送氣！），不是 ㄊ。',ja:'「タ」の t。息を強く出さない。',vi:'Như “t” trong “tôi” (không bật hơi).'},
+  hw:{ru:'Курсивная и рукописная т = m! Иногда пишут черту сверху.',en:'Italic / handwritten т looks like m! Sometimes with a bar on top.',zh:'斜體和手寫的 т 像 m！有時上面加一橫。',ja:'斜体・手書きの т は m に見える！上に線を引くこともある。',vi:'т in nghiêng / viết tay giống m! Đôi khi có gạch trên.'}},
+ {L:'У',nm:'у',say:'ууу',tr:'/u/',k:'vh',snd:'ууу',w:['зову́т','уро́к','куда́'],
+  n:{ru:'Губы трубочкой.',en:'Like “oo” in “moon”.',zh:'像 ㄨ，嘴唇嘟起來。',ja:'「ウ」。唇を丸く突き出す。',vi:'Như “u” trong “thu”.'}},
+ {L:'Ф',nm:'эф',say:'эф.',tr:'/f/',k:'cp',snd:'фа, фо, фу',w:['зефи́р'],
+  n:{ru:'Как в, но без голоса.',en:'Like “f” in “fish”.',zh:'像 ㄈ。',ja:'英語の f。',vi:'Như “ph” trong “phở”.'}},
+ {L:'Х',nm:'ха',say:'ха.',tr:'/kh/',k:'cp',snd:'ха, хо, ху',w:['хорошо́','пло́хо','Хано́й','Хокка́йдо'],
+  n:{ru:'Как ㄏ, с трением в горле.',en:'Like “ch” in Scottish “loch”.',zh:'像 ㄏ，喉嚨有摩擦。',ja:'「ハ」より強く、のどでこする。',vi:'Như “kh” trong “không”.'},
+  hw:{ru:'Не путай: Х — это «х», а не латинская X!',en:'Careful: Х is “kh”, not “ks”!',zh:'注意：Х 唸 kh（ㄏ），不唸 ks！',ja:'注意：Х は kh の音！',vi:'Chú ý: Х đọc là “kh”!'}},
+ {L:'Ц',nm:'цэ',say:'цэ.',tr:'/ts/',k:'ch',snd:'ца, цо, цу',w:['пи́цца'],
+  n:{ru:'т + с слитно. Всегда твёрдый.',en:'Like “ts” in “cats”.',zh:'像 ㄗ（不送氣），一直是硬音。',ja:'「ツ」の ts。',vi:'Như “ts” trong “cats”.'}},
+ {L:'Ч',nm:'че',say:'че.',tr:'/chʼ/',k:'cs',snd:'ча, чо, чу',w:['А́нечка','Чжунли́'],
+  n:{ru:'Всегда мягкий.',en:'Like “ch” in “cheese”.',zh:'介於 ㄐ 和 ㄑ 之間，永遠是軟音。',ja:'「チ」。',vi:'Như “ch” trong “chị”.'}},
+ {L:'Ш',nm:'ша',say:'ша.',tr:'/sh/',k:'ch',snd:'ша, шо, шу',w:['Ма́ша','Са́ша','хорошо́','шокола́д'],
+  n:{ru:'Как ㄕ, губы округлить. Всегда твёрдый.',en:'Like “sh” in “shop”, but harder.',zh:'像 ㄕ，嘴唇稍圓，一直是硬音。',ja:'「シュ」。舌を後ろに引く。',vi:'Như “s” cong lưỡi trong “sông”.'},
+  hw:{ru:'Рукописная ш похожа на w; иногда пишут черту снизу.',en:'Handwritten ш looks like w; sometimes with a bar below.',zh:'手寫 ш 像 w；有時下面加一橫。',ja:'手書きの ш は w に似ている。下に線を引くこともある。',vi:'ш viết tay giống w; đôi khi có gạch dưới.'}},
+ {L:'Щ',nm:'ща',say:'ща.',tr:'/shʼ/',k:'cs',snd:'ща, щи, щу',w:['борщ'],
+  n:{ru:'Долгий мягкий ш: щ-щ-щ.',en:'A long, soft “sh”.',zh:'像 ㄒ，拉長一點。',ja:'長く柔らかい「シー」。',vi:'Như “x” kéo dài, mềm.'},
+  hw:{ru:'Щ = Ш + маленький хвостик.',en:'Щ = Ш + a little tail.',zh:'Щ ＝ Ш ＋ 小尾巴。',ja:'Щ ＝ Ш ＋ 小さなしっぽ。',vi:'Щ = Ш + một cái đuôi nhỏ.'}},
+ {L:'Ъ',nm:'твёрдый знак',say:'твёрдый знак.',tr:'—',k:'sg',snd:'сел, съел',w:['объе́кт'],
+  n:{ru:'Не звук. Отделяет согласный от е, ё, ю, я: съел.',en:'No sound; separates a consonant from е, ё, ю, я.',zh:'不發音，只把子音和後面的 е、ё、ю、я 分開。',ja:'音はない。子音と後の е・ё・ю・я を分ける。',vi:'Không có âm; tách phụ âm với е, ё, ю, я.'}},
+ {L:'Ы',nm:'ы',say:'ыыы',tr:'/y/',k:'vh',snd:'ы, мы, ты',w:['ты','мы','вы','обы́чно'],
+  n:{ru:'Как «и», но язык отодвинут назад.',en:'Like “i”, but with the tongue pulled back.',zh:'介於 ㄧ 和 ㄨ 之間，舌頭往後縮。',ja:'「イ」の口で舌を後ろに引く。',vi:'Gần như “ư” trong “tư”.'},
+  hw:{ru:'Ы = ь + І, пишется как одна буква.',en:'Ы = ь + I, written as one letter.',zh:'Ы ＝ ь ＋ I，但是一個字母。',ja:'Ы ＝ ь ＋ I、一つの文字。',vi:'Ы = ь + I, nhưng là một chữ cái.'}},
+ {L:'Ь',nm:'мя́гкий знак',say:'мягкий знак.',tr:'/ʼ/',k:'sg',snd:'мат, мать',w:['Ната́лья','О́льга','день','Тайва́нь'],
+  n:{ru:'Не звук. Делает согласный перед собой мягким.',en:'No sound; makes the consonant before it soft.',zh:'不發音，讓前面的子音變軟。',ja:'音はない。前の子音を軟らかくする。',vi:'Không có âm; làm mềm phụ âm đứng trước.'},
+  hw:{ru:'Рукописный ь похож на маленькую b.',en:'Handwritten ь looks like a small b.',zh:'手寫 ь 像小寫 b。',ja:'手書きの ь は小さい b に似ている。',vi:'ь viết tay giống chữ b nhỏ.'}},
+ {L:'Э',nm:'э',say:'эээ',tr:'/e/',k:'vh',snd:'эээ',w:['Тайбэ́й','э́то'],
+  n:{ru:'Как ㄝ. Не смягчает согласный.',en:'Like “e” in “bet”.',zh:'像 ㄝ。',ja:'「エ」。',vi:'Như “e” trong “em”.'}},
+ {L:'Ю',nm:'ю',say:'ююю',tr:'/yu/ · /ʼu/',k:'vs',snd:'ююю',w:['Ю́ля','Ю́рий','Гаосю́н','Хонсю́'],
+  n:{ru:'Два звука: й + у.',en:'Like “you”.',zh:'像 ㄧㄨ（「优」）。',ja:'「ユ」。',vi:'Như “iu” đọc nhanh.'}},
+ {L:'Я',nm:'я',say:'яяя',tr:'/ya/ · /ʼa/',k:'vs',snd:'яяя',w:['я','тебя́','Я́на','Япо́ния','Росси́я'],
+  n:{ru:'Два звука: й + а. Я = 我!',en:'Like “ya” in “yard”. Я = I!',zh:'像 ㄧㄚ。Я＝我！',ja:'「ヤ」。Я＝私！',vi:'Như “ia” đọc nhanh. Я = tôi!'},
+  hw:{ru:'Я — не R наоборот! Рукописная я начинается с крючка.',en:'Я is not a backwards R! Handwritten я starts with a hook.',zh:'Я 不是反過來的 R！手寫 я 從小勾開始。',ja:'Я は逆さの R ではない！手書きの я はフックから始まる。',vi:'Я không phải chữ R ngược! я viết tay bắt đầu bằng móc.'}}
+];
+
+const KIND = {
+ vh:{c:'var(--coral)',  ru:'гласная · твёрдый ряд',en:'vowel · hard row',zh:'母音 · 硬音列',ja:'母音・硬音系',vi:'nguyên âm · dãy cứng'},
+ vs:{c:'var(--coral)',  ru:'гласная · мягкий ряд',en:'vowel · soft row (softens the consonant)',zh:'母音 · 軟音列（讓前面子音變軟）',ja:'母音・軟音系（前の子音を軟らかくする）',vi:'nguyên âm · dãy mềm (làm mềm phụ âm)'},
+ cp:{c:'var(--mint)',   ru:'согласная · твёрдая или мягкая',en:'consonant · hard or soft',zh:'子音 · 可硬可軟',ja:'子音・硬音にも軟音にもなる',vi:'phụ âm · cứng hoặc mềm'},
+ ch:{c:'var(--mint-d)', ru:'согласная · всегда твёрдая',en:'consonant · always hard',zh:'子音 · 永遠是硬音',ja:'子音・常に硬音',vi:'phụ âm · luôn cứng'},
+ cs:{c:'var(--mint-d)', ru:'согласная · всегда мягкая',en:'consonant · always soft',zh:'子音 · 永遠是軟音',ja:'子音・常に軟音',vi:'phụ âm · luôn mềm'},
+ sg:{c:'var(--lilac)',  ru:'знак · сам не звучит',en:'sign · no sound of its own',zh:'符號 · 本身不發音',ja:'記号・それ自体は発音しない',vi:'dấu · không có âm riêng'}
+};
+
+/* ---------- интерфейс ---------- */
+const UI = {
+ sub:     {ru:'33 буквы · уроки 1–3',en:'33 letters · lessons 1–3',zh:'33 個字母 · 第1–3課',ja:'33文字・第1〜3課',vi:'33 chữ cái · bài 1–3'},
+ hero:    {ru:'Нажми и послушай весь алфавит.',en:'Tap to hear the whole alphabet.',zh:'點一下，聽完整的字母表。',ja:'タップしてアルファベット全体を聞こう。',vi:'Chạm để nghe cả bảng chữ cái.'},
+ playAll: {ru:'Весь алфавит',en:'Whole alphabet',zh:'聽全部字母',ja:'全部聞く',vi:'Nghe tất cả'},
+ stop:    {ru:'Стоп',en:'Stop',zh:'停止',ja:'停止',vi:'Dừng'},
+ abcI:    {ru:'Нажми на букву: название, звук, курсив, рукописная форма и слова из уроков 1–3.',
+           en:'Tap a letter: name, sound, italic, handwritten form and words from Lessons 1–3.',
+           zh:'點一個字母：看名稱、發音、斜體、手寫體，還有第1–3課的單字。',
+           ja:'文字をタップ：名前・音・斜体・手書き体と第1〜3課の単語。',
+           vi:'Chạm vào chữ cái: tên, âm, chữ nghiêng, chữ viết tay và từ trong bài 1–3.'},
+ print:   {ru:'Печатная',en:'Print',zh:'印刷體',ja:'活字体',vi:'Chữ in'},
+ ital:    {ru:'Курсив',en:'Italic',zh:'斜體',ja:'斜体',vi:'Chữ nghiêng'},
+ hand:    {ru:'Рукописная',en:'Handwritten',zh:'手寫體',ja:'手書き体',vi:'Chữ viết tay'},
+ name:    {ru:'Название',en:'Name',zh:'名稱',ja:'名前',vi:'Tên'},
+ sound:   {ru:'Звук',en:'Sound',zh:'發音',ja:'音',vi:'Âm'},
+ words:   {ru:'Слова из уроков 1–3',en:'Words from Lessons 1–3',zh:'第1–3課的單字',ja:'第1〜3課の単語',vi:'Từ trong bài 1–3'},
+ trace:   {ru:'Напиши пальцем по образцу',en:'Trace it with your finger',zh:'用手指照著描寫',ja:'指でなぞって書いてみよう',vi:'Dùng ngón tay tô theo mẫu'},
+ clear:   {ru:'Стереть',en:'Clear',zh:'擦掉',ja:'消す',vi:'Xoá'},
+ preview: {ru:'★ скоро',en:'★ soon',zh:'★ 之後會學',ja:'★ これから',vi:'★ sắp học'},
+ ok:      {ru:'Правильно!',en:'Correct!',zh:'答對了！',ja:'正解！',vi:'Đúng rồi!'},
+ no:      {ru:'Правильно:',en:'Answer:',zh:'正確答案：',ja:'正解：',vi:'Đáp án:'},
+ again:   {ru:'Ещё раз',en:'Again',zh:'再玩一次',ja:'もう一度',vi:'Chơi lại'},
+ menu:    {ru:'Меню',en:'Menu',zh:'回主選單',ja:'メニュー',vi:'Menu'},
+ listen:  {ru:'Слушать',en:'Listen',zh:'再聽一次',ja:'もう一度聞く',vi:'Nghe lại'},
+ r3:      {ru:'Отлично!',en:'Excellent!',zh:'太棒了！',ja:'すばらしい！',vi:'Xuất sắc!'},
+ r1:      {ru:'Молодец!',en:'Well done!',zh:'很好！',ja:'よくできました！',vi:'Giỏi lắm!'},
+ r0:      {ru:'Попробуй ещё!',en:'Try again!',zh:'再試試！',ja:'もう一度やってみよう！',vi:'Thử lại nhé!'},
+ m3:      {ru:'Ты хорошо знаешь алфавит!',en:'You know the alphabet well!',zh:'你已經很熟悉字母了！',ja:'アルファベットをよく覚えたね！',vi:'Bạn đã thuộc bảng chữ cái!'},
+ m1:      {ru:'Повтори азбуку и попробуй снова.',en:'Review the letters and try again.',zh:'再複習一下字母，然後再試一次。',ja:'文字を復習して、もう一度やろう。',vi:'Ôn lại chữ cái rồi thử lại nhé.'}
+};
+
+const MODULES = [
+ {id:'abc',   c:'var(--coral)',   ru:'Азбука · 33 буквы',     en:'All 33 letters',          zh:'33 個字母',       ja:'33の文字',        vi:'33 chữ cái'},
+ {id:'listen',c:'var(--mint-d)',  ru:'Послушай букву',        en:'Listen: which letter?',   zh:'聽音選字母',      ja:'聞いて文字を選ぶ',  vi:'Nghe và chọn chữ'},
+ {id:'hand',  c:'var(--lilac-d)', ru:'Рукописная буква',      en:'Read handwriting',        zh:'認手寫體',        ja:'手書き体を読む',    vi:'Đọc chữ viết tay'},
+ {id:'ital',  c:'var(--butter-d)',ru:'Курсив',                en:'Read italics',            zh:'認斜體',          ja:'斜体を読む',       vi:'Đọc chữ nghiêng'},
+ {id:'word',  c:'var(--coral)',   ru:'Буква в слове',         en:'Missing letter in a word',zh:'單字裡缺哪個字母', ja:'単語の抜けた文字',  vi:'Chữ còn thiếu trong từ'},
+ {id:'order', c:'var(--mint-d)',  ru:'Алфавит по порядку',    en:'Alphabet order',          zh:'字母順序',        ja:'アルファベット順',  vi:'Thứ tự chữ cái'},
+ {id:'final', c:'var(--lilac-d)', ru:'Итоговый квиз ⭐',       en:'Final quiz',              zh:'綜合測驗',        ja:'総合クイズ',       vi:'Bài kiểm tra tổng hợp'}
+];
+
+const QI = {
+ listen:{ru:'Послушай и выбери букву.',en:'Listen and choose the letter.',zh:'聽發音，選出正確的字母。',ja:'聞いて正しい文字を選ぼう。',vi:'Nghe và chọn chữ cái đúng.'},
+ hand:  {ru:'Какая это рукописная буква?',en:'Which letter is this (handwritten)?',zh:'這個手寫字母是哪一個？',ja:'この手書きの文字はどれ？',vi:'Chữ viết tay này là chữ nào?'},
+ ital:  {ru:'Какая это буква в курсиве?',en:'Which letter is this (italic)?',zh:'這個斜體字母是哪一個？',ja:'この斜体の文字はどれ？',vi:'Chữ nghiêng này là chữ nào?'},
+ word:  {ru:'Послушай слово. Какой буквы не хватает?',en:'Listen to the word. Which letter is missing?',zh:'聽單字，缺了哪個字母？',ja:'単語を聞こう。どの文字が抜けている？',vi:'Nghe từ. Thiếu chữ cái nào?'},
+ order: {ru:'Какая буква пропущена?',en:'Which letter is missing?',zh:'中間少了哪個字母？',ja:'間に入る文字はどれ？',vi:'Chữ cái nào bị thiếu?'}
+};
+
+/* похожие буквы — для правдоподобных неверных вариантов */
+const LOOK = {т:'мшп',д:'бвз',и:'нпй',п:'нил',ш:'тщи',й:'ицн',м:'лтш',л:'мяп',б:'вдз',з:'эве',в:'бзд',
+  г:'тпч',ц:'щич',щ:'шцд',я:'лаю',е:'ёэс',ё:'еэо',ь:'ъыб',ъ:'ьыб',ы:'ьиъ',э:'езс',ю:'иоя',ч:'гцу',
+  ж:'хкш',х:'жку',к:'хжн',н:'ипк',р:'уфп',у:'рчх',ф:'руо',о:'аёс',а:'оя д',с:'эео'};
+const HEAR = {б:'пвд',п:'бфт',в:'фбм',ф:'впх',г:'кдх',к:'гхт',д:'тбз',т:'дкц',з:'сжэ',с:'зшц',ж:'шзщ',
+  ш:'жщс',щ:'шчж',ч:'щцш',ц:'чст',х:'кгф',е:'эиё',э:'еыя',и:'ыей',ы:'иьу',о:'ауё',а:'яоэ',я:'аею',
+  ю:'уяё',у:'юоы',ё:'оею',й:'иыя',л:'рмн',р:'лнд',м:'нлб',н:'млд',ь:'ъйы',ъ:'ьйы'};
+
+/* ---------- утилиты ---------- */
+const $ = id => document.getElementById(id);
+const plain = s => s.replace(/\u0301/g,'');
+const tx = o => o[LANG];
+function tri(o){ return `<div class="ru">${o.ru}</div><div class="en">${o.en}</div><div class="loc">${o[LANG]}</div>`; }
+function shuffle(a){ return a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(p=>p[1]); }
+function pick(a,n){ return shuffle(a).slice(0,n); }
+/* слово с ударением (красная гласная) и подсветкой нужной буквы */
+function acc(w, hl){
+  const ch = Array.from(w); let out='';
+  for(let i=0;i<ch.length;i++){
+    const c=ch[i]; if(c==='\u0301') continue;
+    const stress = ch[i+1]==='\u0301';
+    const isHl = hl && c.toUpperCase()===hl;
+    const cls = [stress?'st':'', isHl?'hl':''].join(' ').trim();
+    const t = c + (stress?'\u0301':'');
+    out += cls ? `<span class="${cls}">${t}</span>` : t;
+  }
+  return out;
+}
+function lessonTag(l){
+  return l ? `<span class="tag l${l}">${l===1?'Урок 1':l===2?'Урок 2':'Урок 3'}</span>`
+           : `<span class="tag l0">${UI.preview.ru} · ${tx(UI.preview)}</span>`;
+}
+
+/* ---------- записи преподавателя (синтезатор читает эти слова плохо) ---------- */
+const REC = {
+ 'Гаосю́н':  'data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjYwLjE2LjEwMAAAAAAAAAAAAAAA//OEwAAAAAAAAAAAAEluZm8AAAAPAAAAQgAAMkAABwsLDxMTFhoaHiIiJioqLTExNTk5PUBAREhITFBQVFdXW19fY2dnam5ucnZ2en5+gYWFiYmNkZGVmJicoKCkqKirr6+zt7e7v7/CxsbKzs7S1dXZ3d3h5eXp7Ozw9PT4/Pz/AAAAAExhdmM2MC4zMQAAAAAAAAAAAAAAACQDwAAAAAAAADJAXeLbBgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//OExAAmIbCEAN5wLDhFE5sCOQIDc0E0pEMlOzKsBMpUeMVw0FThMOoUJmJ7AHufRx5sn9IHIDnltEb1OnBd6ExWHn5dZ5WzuY5zUVequW4vdgjX3Idt9JJMy6Wy6KwfCH7i8gl8sr3Ksqf1nLEl0rWV6rUngmyjCNFHlFCBoaFCP6YCx12OxK8r1+9fsy6BoTA8Ujcom6CIuy5TXWXMFWcqxLtHxRjKkI1ATKNj83LlyMkhuCFTuvUxp6e/U4k3//OExBofO5IYNsIEvcUWCsP1F2SYDgPFFERXIMyw84l75f/mCBQwhK4k+93vDgPKe3Y6NUDF/1c/z5z0J+c/IyEI3yM9T/nO6Esp0ZwhNTuhGqANRlcgAL////z/k5CZGqHFpHf/BHAPm//ofgAdHhXOKJwEpDoQYEDGJFxjQMX/NAYjPiJC5pSICvAADF0EqJY1yFtcu24bd94VK1PqenY1ZjrzsPn3ReSVz8Zp5HjIaWhlmV6kqW4/PyyUSyYo//OExFA62v4cEVvAAaXQ219087Uy7bX3Dft+9WJihkUEUr8UUcl1DKK0OUkZxnqSWRjf16dTNt06OOGzsvuaUmMIOGutpoFGbWm9pvWBhoLrvl+F6vq/jfqY61/P/8OXLNz7ve95hqrlvLX85YqUlXC3dp+ZyjtBuJ6ididuXJZQzU1jWjU5SYRCzypP5+gu/9ef772w3d+q2nmfdcXTsJl/2SnEJpz49SAUKTGHJJbXJARfcAHfgItFohfCFAay//OExBctYxJSXZl4AQJFnQjLCLBs8WYR1UsXov8uiXzV6INBOIceCAqXt2+jq+GkDyeCNC2RjvlX8x1c+tZmgoWjGSLHeKZ42FijJ9UG+xHXO8ZKmsmlJSJq0Z/qI/e003qN3HpNt7PeHbR+vFFbwGBcUJ2yPfujLK9Xauf53/n43/7f3x91/1//jXzv41n3+ocuJN0fb/3//5a1mzHrJvw9f/w77znUpIfpdQEOYRWLDWsg0AFJAAloZQyEo58i//OExBQsGkaRv5nAAlXMXZU4sGHpImmMYqoDoHOA0KEKH8MAv7xgqFO+rAaabjAeNIdf6oFVmnSLCHpbarMghNLYooecJuNJKpTJ5O/ErEjv/LkVIHlkai8ZaVC/jNBXlsu5T3IpBcugtxu//8u1v//7SaqR+3Tv3EMP+tKo7Fb17n9r3Jc/E3N2rGv///////////////735BwoJqnrMSoNjTmtgdFWuSogUANlroig0xIYwIw4DECCgqRBSUeJ//OExBYjs0qEP9pAAm0RnxciLO/IaOkkWE7utYnMn/KB8IA+Uw51irOHoRIrRMDxMHRY0R0e5MedIKKa1EERdbmVUlV//j4prkhzRH1DscHRANh4dRDNfU9T1//////x/9///+1m00bXF/E1pNJOWY/TRC/xf3dynrdY3cx//fT5NW3apKYCAG3Vo4VbzEwwGqwHSDQcgyhhZGDpItyAQUhIUIUZoQo7AjRn9iNBKcaaOLSTGIglG7K6NbM6kMi6//OExDohqcJgHtsQ7E0TyahEoej45UJlagJg5bOMWr5rlr83imv73n+ZtNqKOVRZ7EYoTgNBqHoNRILO9FWJXBISu//96qh7ZVxoSCUGgRGHz/ow7GGrv/9VGYSBwYqL2aUmGbY1aCuENYUTNfAFMNngMAAMboABfMiBgJgJAwGxEHCUvBsQNAFrbIHWdN4WtKDKmcFg7EsXYlMEyJeMOtychYRG51ZE8LLVhWCS9l8JX00hmAVEzstLKZbJtRKa//OExGYuYeI4A13AAN0UYtUFjDDLCn5zDfP1+eNqxK7Uenr+6D6s/y3DMMy9qLcpHJn7bSlm6WvPV5HZq8ws3LYo9h1yYp/i7phhEIFkmHAoSBsyKucYMc79fd/09C/+5SDCdn+tTatn87XtLmJGSG0m1ovrEDJGOKNCsmTwUac8FgjxBaZOYEBA5AEVxAELnRQQt4nwMkAUAPsTkMwRQcwzIkLgE+A2CA5QpgdGEOJ4h5PjlDNEieMyZA8CHaI8//OExF8//BKmX5mYAyiRMRiSJGkUNY0BTzQtGLibwy2LeOYK0GQY3MCbHyShLnS8mcLBgXx0B8AyAyhLDNiwOUTBzUwrY4TCLnEEnkPFxjllc3D0wxOPZNm1tX01U1NQoupiDCPBCQNWDICFBBAtG5HjjOrrfXbf6TJLWfPoIOkhZTxmCcNBcBqblw0kUJw0Jwx////2//+QceQxuHLh+4WRicyZImgJTLecBpBmqomNLSsd08leMlC+rAU60rkW//OExBIqa2KoAZh4ANhjQ4EO4V1kEFnR8OEXUyDLfF6agG9KsKmM03T3IWWOUlsSBG2rsZtk447+PaE253FizRt6/Leq548vpauo+Nakpr6re00e3nvFTDGwszi/h/5pFg4n8CjO3wrN9p3krLeaI/paHSNiF/jGf/8/5////+pX9IsXNPq/9/9fPtbev/9f5/19+2/j/7+cVri1t/fja/mH/51dMBxzfBZEp4Q5ilwqV+HSTKVWLem0QFqcTL+O//OExBsnCa6sF9jAAEhDRbTJFqtXdJNRlCi7P0bUf04g5AWQFj0zvs1gOCIMhm3A8glFeYq15FYiltmbwOGhfLFDoS/sDTjqYNwpY/IuUn1+bt6lmN3PVv8Pu54WNYfd7/Pz1d7VsV6v0QfLhWt58aKJ/C+7fWmON0xFnhgVJ7nqb1hoVtggDAPodSiIjao7tl/b8VFDrD0vZ8E6Z882Yk2QrqYozKXaiFhuTqRFgk8ho7ENtAqAk4ZZhNQyHrnT//OExDEiK37IDsIHGxnImMD0RjxNRXNQvHY5YenZXIi3aXjuubp2l0zTxY0QxYgnLp2T4A8yrGORHTz///ZzK043LNPzn3VEM0MlnfZoepT/t1slfU55a/5E0DEHgQw0/7lCsNUJSva/4b+X9K5QOkR10l3wP+4OM1WoUu8eKuCGNg3ZiXGo2nDYmxr5+wiSbjOH2oZUAGoWBBTcMmFCOx+UZtlQUex+r8ZSRPWr22LONrDowrVqiv92O73Zip6///OExFshQ67MNnoLG9TuojUXYk0xFO6HZBVCDUVTkJZ6VX/9EM9+/oibpOWJDAYLiKlR/ziylpAkq7r/ku2SprtR7W1hnIt+PBbGCLROSDSRZIQR9mA7I9lLzZPRNpEKlShLcH5/uq5wfiCEAaB0YLB+7owfzU6TVtUNU1UUtsrKPZeKJvg0VPzGd9Gf5DrRTmU6UZSX/uUpmMjXYr0Zr/tCIp1RFU2Sn2/e29tr+793YykIHL19nBJyihf/v1Mc//OExIkg27LM1noFGssDtDg1N6wk/CXhLOQwOzLoaoCsX7RWSAfEOUsmYQxYdORGkheJ3HKkPkk/TGujzdKjldqWdSYXo6DUWCUEC0sdE+yo6l7Pzecfz6aed/S5WL0y+pUPE3UZfOXOW3iP1yu+XaX+zujjq97t//ulznzLVJVVO6ZJFIuUhWV9P/+iPdLM3KSkylIopTlFyPdw6kxBTUUzLjEwMKqqMsv+yrasrZ8VhbCje+ioahKQiRkUfqSV//OExLglE4awBssFGTYm0E8cIbYPE1HlC+WoG6xvTXp+Me97vTqaqg5Ab6WUt6zyq81cszSxg5wNEByAOgSwkUYKQ2QfJQfJVFEvL//5R8UMMdRBxqorLjpmMyK3EsqOyGpR/+1WTLt/3pMdxnTlN+8jblVMQU1FMy4xMDBVDs2vMEJqlVCUJ5KY0NJh1HMPSVWlMKphdS8B1gyXpg1JWegkyyBqZh2xEdph4PADIU4ZQv3bEeUqBpCWspfT+10d//OExMsfi3K8BsJLD3kiwEJbGsRlVEgRyIzATtmzvFb17XW9Dz5le1XxCbXC3AMlQFA9PyouHg+EQJSYKhFMAwLwgLll7MPUvVO7dasDYPJJP+AjICCmJgyw8Prpu3fuCIRHDFegCAcDiMAnGtuOv//3CqoeruzIxh9xEajUO+hoQapAcUQchgwkOWKy2pqfCZ4EhceMWMUJ5k1yJEYwDFHax0LLpWIDoQLBzpIc3lUWqcV5mUiBjGllfS+T6q27//OExPUqCd6cBtPZDOoebyghBWnCELGafAYODetASulFE2tbZJu77JpfPHCggj3P1gIS0M7I9Fpin+W07kLwSegmAhJL5JVy2DJ36uVTWUS+h3unyrUe+fdMso3Dkr2EkjHsZKvdQuz54RK307mkyq3NJVOdTA5PVsmUBvBEElEfA5rIW9wAEyJrC5kdiWoVHEDocTrUB2skoZlBDRcVBY1AFfAwoPYuqsMRInxFM5V6OWjVTCG6mcsO/AjYcqqd//OExP8s+fqMBNvxFEKZXbkTmGYA86JOIuImFD6Ru5+kbD/J7zMbKwIHaQR2T9jLz2IhLi8LEzE7uJ0lX5YLr27bvJ6PfEILCIYeRGZVp/xLI/SiyztBOZkfalP+T/vO0znbqqv+efLIGg2mtm2BlQ3/+hVMQU1FMy4xMDBVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVWEGvzW/XUDuwAoVSpgXUEDfMLE9RoKkgBu//OExP0sE66MBtvE/GhtYQ3nZoEWBUPURVL4vFqgcx1jL4xl963J+V2DOnFbcXxx7cj8+CvaCrh9kse4QOwIoRPb/ilhoddC3iJK7fQaySt3xJBUVVVKXyf7a7qSz9JU3K1N7LXadkZ2Q817/R2DhW/0+pVMQQlLbnDLwDZwFj8PQYUCAIP5bMG0gxsMjASxM2GQwgDSIhjyUJBuamDwcAzPghDgmkomnI5T1RdOH8PhpPRBYP2kKJloyvT4UvtA//OExMwf07K47sIK3szUXUds3piVhshkKkhSoXB5zm7Dmadv9NTPIft0Qm25IMMZkYVQ4t1ISOaVPEb3ex/vF0gWEjVLuNbxocSSeM1knoxj7q3/92/+9Vv3rOlE2ZKHMtnfTb+lmpPVYtBYgJHDm3uT/QoU6vISY5KgkT4HP0OAiZdrkRBGZUj4cCBMIRVMrEbRZMKijMmARBoBGGSfiwwGI4wGIoAOiYChA7ZACKUTynOZo7kSnhxUN5HwFfAS//OExP0sG1p4BuPE/FF6XonpswbNji/LEiuXAvxyp0WUjiehgtSHGtAOydfVURNsDUm1sTYqAYTGrR+meoUooVK2JhuemgiyUqYxR4CKjqNRPGDVjVF4cXU9dO3KUIuw4YZ06t/66U3/L6u3qi3Qt2MqO5DM3WW6d3XnckzMtFJqMyGTc5QApIyAwlKjNIEMBDQ5QcTEgiM77M24PzDI5NdjYmCwUH48EQCGzV7YLIGJFEY2CTES/sYRwl+Eiru9//OExP8we25kAuvK/Km3V3KrWU/unxu5V7XKS1hd3S1JqQxVsky7azeuVFqR5r8fs0PrvzloAOqTA7u9GdnOZhm6TNTiAbA4DE8HpQaiFYqwEwtZWja1f2ciFZbtvr////3VXs5C7oDupQVxIzAyHZfR/+irOZFSM9vx1m0A2rM2NdlcVDAp0gE0DEYyP7oFH049oTKoTMFtEw4Ci1higSLiCpFMMEEAhs0KYDDhfMRC4GiExOBTD4rAwXSShsCg//OExPArM1JsAuMFibVcnIlzGTrTikL0pEIW37FlwnkjbZoicQ56qhNA+SUkrPpGQYMd9O+28YpY0b5btxY7OzMqXMglzgfiJQpClTHUSEk8JSPFfT6POJLqRmOzCyt2rGng/OtBlM5CX1///+jSNOUU6FEjHKUHUScUgYxBRiDgJHGWi6K6NkI6nDoJEAxYXESHpRVzw78ZZsUJcoQBk042DEQFOIgsbShhlnnzV0Y4F502xGWxCZcW4QQTAwqM//OExPY0I0JkBOPFGAgpQ0MKDYFG8wIMzFwNMEAorAIXCAjDRjkYGNRUHAlFo3iz/IOR5C0EkgEwMUCo5fyGC5DXU8nfUba/EJA5bQofUrfZgifUZJl37CAAwYBAFBEMs6fldkETrLIdfqVv/K6tFTy6pEY0xCxaWDS0BQDDmavA01MNlTBFqpykSTgrrd9pzH3VQnxl2qaCk5HfZQ+UXlsn1WmRy0B3TR3N3Pnd//97t+////zLcCTNDFHsw3Dq//OExNhC07pcAuZM/izmTY/PV9ztO2al5/dI1NHUG2UhguUCIcDU9JVfe9Svf4b//XsLhgdNNRxM8VWkJtE1elUB3pBgeMaIkmBpjqgj0JMQD4DGIwUDjJCNV4pkis1wwiBJGIQAgQUVViYikdF2dU6vFhY0j83VGRPrgIAKuIiSAeiJAWrou6iVKVzNoySBHFfxtHHfaLRJ6I6pkYIWYSEADnmTs60mtlgOcuDjEOdPvFIMwb4tg5wpm0cqQJiI//OExH9Aw9JsBOPTbXJksl2W5CTPYlKWIsJLkQQsxHxpHYwqTB+q1WOCLX3i4bFA3i6NIqCZpANhsnTbXJ3+dZCfh/v31c9xdvILtyFB5IxFjJ5EjJ0nILRwhBic8hD/ahiDKQMLpMdQ62uTl25IzE6QUjfmtz1SOwjKcF9hHC5OgEjkfuakSSIjD9/8FozD1R2hC25eujyYojMTJBYrdSuqRSqGvoeFPWnr/+tAUYOLoqXl9Lan1fuV1eO/85m5//OExC8x3Dq07njYmk1ht+jmb0/kV/vPbf6woT1Kwvcy9s1+7dt5cUozsqPks5X2ohPuPwvsJXbMn9Jgcp+dVptxdWyfzsnkzi3SZXJE/hITC7RK9h5lDgkLzNrnL/Rs7L5vkSiMlrjN0yJCI/LhdEsxufPGB6XBPNnQnLaEavMGiC0vWCg9gwsHw0CINYVnzrjRyeuI3I507+r8sQRXf+ZmkzSjCminI43ILctri4LUMPhTUQ4sIYVBhQd6URkJ//OExBos097SVhmf592/fqNX3DIxe94fk2PSdTL/65sXroRwof/YXs+RbEzk7w1kGaYBgOikn9qp1UBeIyU9Z7a+3F+fKho4giUCPkVouE8Q9VH4hESj2j7Mq0gmFzOvUN+olYylvVDA4qRTrk9kPLyumY9VMxypBH0hOKDfnoQN+XBVP0QfsBvUikrDlQ1dqZxgndBe5hw9YgQZ9T4VvnPQCVf3BqqNkqyMFRt7RhNka1CXLxsaiZ0wersB1MPS//OExBkok3quQGGYfXZ5bvOuu/LxjO3XCt3LT3d/CacIZSUpNZ9XTXyoFZ64ZHbxbbUGKc7WmJhVasNVvGZ+kJZ+vcikSH2Y0iiAxaS5Cv9H+1frnXa21PX9ksb+d8916a+1fcPvWb53y1JWIrnaub9Wlqe/nL31lLuxPO1dZjVQ2yzFc1tu02v/dfJiZztovYEX0Z7pqtPJ9dEFGeN6JlxoOqNRQNxQHn4ymP4Lx5AzeFYkWPP/jrtra5815pie//OExCklcxK6QmJNpf3PpaYa9AhnKaUKWaW2j6HYaDU9cxQIJC6aasZqzUgOQZZtGStiBpdRVDSJib4pMRO3oWVEI+tNdaUfxdtNb/4f14dK6O0bKFKPSIPnVt0j7fYljGUyGy8UpjNLYXMGJ0dVlbXPosr/v5v/1/bV22WVQAISxcrUBeCE1JSSRCLvpTCNFPUv1GO80todmM5LvfQViBM6bfag+utKOOkmLQQD42sUJQYE1JgpaCRzuABgf89J//OExEYlYzq6TDJNgBBhzkpUDExREHOHk0dRHEVlK+oSLHkkvaZFveF4Qb5NPWlnT+oHkkgmXUkX21Us/1LWkbWnhMW3dON0LfmtDP8fdMDCnHrBfJckXFnru6q6hUVFscQTiI3Yfcs3BMhI1Y5tqbNl6cNoV1Ei835ms6klFExD3vzPKH/i7/VPRf1qU2tWmEp0sKwMyAcGJ42Xyy4+nfj6JaeuvozC68pLTDXz51WcHePn94t44igi5YcZay5H//OExGMnMxq64ksNbRaUqxnNaT00Uf+zbBiORe1YeCF2CpoDF8oNG7t62JEE8qj0E3Y6rpUOqjxTGqu0P43Ll7OnsAW/+/aXVFbRxQQThxISi2Y6scNFSBAJz0GRuPGssIkGWMcbmWizHDTCGlsqG122OUSC5jU66nYIEIGgSKqSBqLJsEJEjD4R1C/aJwIcQHumePSxogliJ8QDPJSrWJhmdN9vSlp0bmtHkgjgxkWJa5266SUWbSNbtW6fp0HC//OExHkj6wK+6EJNYbThOFqtjycnRyrSAJSN/13266nX/3LtiHdWsjYwOdNQq0iDLbUlsMTJN1qGuSfBzcKX6zP+P3pbOpo8j82cYvq3QzEyLkJFSzFsLJEDQ9oyqk9g0akLKcqOkemZf3kQYQsGVG7RnkDdLJtSgkaMnrXN45hboOS+Okn3jqOj7LFGUqLPvMQ+/lOkrO2lh3o9uaqG2MdHd3dlNXiQgLPMLfKw+kXOH5twwTmsXZ9Cp3ZUjUQR//OExJwlaz6+4kmF6PcVTQoXgvH0eJBHFe2GNo0iC5u9lIDQexc7KbcK7BHeEcgNjKBjsyUQmhRYdkAptE8wi1UQUpQqTUUWQtVIhuAwxJA5tUhJ1jIyckbRTPyRpMWvHWlpxWpREmghKCyccrPDLhak9W2LLCnahmUhzE2oGnsMyqaSdmuUpP0w5lfZTR1DalNvJd0PEgIG1l16wqTDlyrGVCmWQhymMZOcQKwN43EXUChzq8pJIsUMVjqg+xZ1//OExLkmczK64njSfCre1tn0lSodXVa+xkFWDSpwkRpkSgqfRKGnmR8sSKReSGVJYndl0BmQhEJFROcKuNEWQGFC7VLNFWUhQ1rk+WbphlNVhAuzesyqpIHwqUUber5O1yVfNnuz7NnqYaYv7Hrymx5Pvwq5MLNYqqylF+8yD+fUZeTIx/tfSkq6OuIoCt5znllR0xyAJVqp0La6t/kzOxuO0wjub2bHTipIAhYsMVHVyxEIZiUDg5bOF5gDp6A4//OExNImoyK64HoSfXoRBKLYCjB99PCvWpx1rry5c6cUMniuePpTxATKkg1XWDYiLnjCBOfJTrfXXSr1ZdYUiwkG8J/Hqe6pCjU3nKa2yuytnla45rWnWvnig0eDgsZw1dqrEUHz4dRQfklzg1WGuiUGJdxOl5ZveqsPWDL3B0oFQue1ry33uWwwgELkqzusozIBBhZA+VOfUzmnvb48NIs29W75W4RTK6Xli07YiLq4dyLGJBUJhFV0OQ64jn48//OExOor+3auQDMRdD8YdSH7aVLWz9m0UaRguNHglG3pDoQkq0mnJypb2p2cj6WkjZKYWskA4jctLa+57WrrfsuQRF7YHz66ulH9s1Gzz+Y9hayjzNbU1q/XjfTUiqzlVLrlIkNJatIZOug9+kCLIqWK1dLNRCspdvSGHfeArRZd1yNKYYicSEjaadieC4FxEzPRC7xKM0eSalNXktDgTbiy+k2sxb+7VFxDjzbcGCd/CUmod3KVhIOph1mKNU03//OExO0sK7KuRDMFXPM14yfCicy6oUtobtS9SwG6JMyUo7BCuuhBoaQNE0HOsePgKokQoqSFTNyRIqLilCgLLIxKCJBzshSsiiH0TcE+2THUU0vhplsSty2lD7KTar1VQwmRG2mSJFWJs0rqIpKp2S1qFYibhGEi5WSvClpdDwRKdJnawWFwlV/tosRoAMVSjMrEAFB5IYyaYTFhSMRuk6meQIIgYJDAYl0BQuRBuibo8udPFPdiD3YjNO/kVtSy//OExO8uQ2qmQHpFsH2luO+lt6YHUzX8n6W3UGfV/2hs5WPBD9tIYqzwwACHcTjUZUNemGMGfRe7HOQFteEJDPjg5WLDMgL4095PU+n6hs4M4SWjBPWSkVmnyuhmZyiPoYFcPLstX68uhdZ7DqJdbF3s1lc9bTkQVjx0zR5ptmTpHA1M7W3+sYVNHqx9Ah1fWOJLEybJszP13LRUyDQ4HEh2HWVbugAkj3/O1QmZQSinfqFUBGoJBxxEM0vsfUrC//OExOk1CwqSIuMNkBhC0cfcwRRf1AvXBkbyO5NyiTO80iEzbhtyXYz+AC8Vyz50Wn4EcK12uYytRIzk0CQckNmr75zrrHM0t/d3tbZM7+fBuMTyiee48t0TxYUDBZgx7I1vuadKX0NWrXJ2/26NIyOVGcgcMoo457NrNpp0t5klQytGy8k3f9/bEboP419dhWbV7IraTEFNRTMuMTAwqqqqqqqqqqqqqsVftauXf7t0Thq0t0ByZ2RvzDD+0tOG//OExMcnK66xjtMLF11rliASCoyGmiMNNLIkWsLiny2CJKrayKH51WDSBNdkfQosQZULQ/o9828o09h85HuahrHHDysvvSuaah7MzXVjkRyh5x9U/+36+9DR0w8YDSGidwsefWd7VqekkJgs5FLvTPm2KXUKsgoFZhyPhgADo7EJjUBgzERmkTplqJxmILZgoBpl6AYQDJh0C4JB4HAQYXA2YAheYxDyMBEYJgOxN3gwAh4AlYUErvKd0SILZIRg//OExMofWrrI9sJOnssaTPtu7kEwy05u1JBD61YCicpij7OvHW1Xq3eZVtTAa01CNQW+ENOXLHSlEFw5ceiLufIFSt3ZS/sZTwgFVdOBN5GNma2MRGAUWZC4VRluAGdXBSPhOPhJJ5HLiQ0UI4Tl5dE891en6TB9Yt9dlsO/9v1mZ9ensaba3Z2GFddo5Uh8Xx1QjIfoF165m1yk3qz35TZq73TPqt+l3UpzVmNWry9B1DHxOEzZPRfbchV/03dl//OExP8+k65oAusFzhAoVnDYoUxEIoRonW8b+CRENM+dld61JEjYhCmoCRQbnNCw8ITvdGFBOm59g5uGOFVU1IHErU5+uZzJzEUEtKiNhCvrMFDfPLzc3+35zznwtbtDnp3LLyvw5XhwdhL5KUyh//kZWkLJggdyc0oHLCFm4kVvCi1gRnaRcO+fMypHSBkZ3e3CcTZnSy/Rgig60clIjPWVO8/urBWyQ/YD9BYTASWQDRlq0JFgMBzNgoxItHmD//OExLckK/KkLspGq6/tmWvlPVGxILDwBI1/v8yeaeAwUCQwSM5IqAOWqmi5urraw9EYzUGaguPz7SgniSOa4K4Dpp19yDbtx+65/lp2xUOAzEcMxLHcKTwGC4Ad5aJ5ZESBFA2J3rXnVOiaFLdqUSRjqYqMzlT7WrW8+KGCji4oGmRLf/7FRlZCyOQx0aYo051IVrFV3Wv/9G1QjCp0ZhqjTC5sVOjMliS5DgjCZmsfBAnNvQ0xSEzD7FGmKDAw//OExNkwdAJ4BtsLGZ0oEBwChAJSrMOBdSgFAJ9Xdfxul/UVqDoBTNEfNpXklycStWllSQdRTcQBlLbgr0UzR5cRV8uzqHEVmd6eS4ft8I6HjG/3GmxeJJlmhT2pm1XUVMxE6xtZ0tsq6JQ1ngKg4SzX4FW1kgw4jNTNxJAe8966oYsj+7//3LUprsihTK1v/6u7qjFokrGN1YqGmX///uVU3fuyLYYEdhZQRco12OkKBUzEACwCTV8ODC0FGKBh//OExMottA58BuPE/RmAAUvVFcOET/NRWs767YjDzALtSZkrSnHn5GyFdMO2q4xSmnpLlI+aXeb1W5rLKKIxgN60XW747VOe47YzWc97q2g2bWrWJcrq1dfZhHV65D5gwMR3toVHz+WGCIQBE0HEd5s42PS1qtLhEJTSSyGP/Y0FU1oDpKQSSYt1Eny3sjgVBoMhkL3NTEFNRTMuMTAYBuOSy+qoPLWzHIPpsGQQK136zTJIiMLDtygaZJ9ZpDyk//OExMYnAcKABuMfFLEVqqMwX2cWsOmo5crz/CfbcamdifBYQWRIyo6ss/z/pwy8sar5jWEFyOXrBwoMlS3//DbHHj5d8/byhwslO/aTz9D+TmVKMCvCsqbR8iI9YQysgM2fc7rmTUNlPtzv6KDglQCKS7pMQU1FMy4xMDCqqqqqqqqqqqqqACVmrdRFCMYLFNRqBYgcG2spII0sDAw5Yz7y1mcw1+7XpZL8MOu9aazrxN8YGoNeGyGqUkeeuik+//OExNUiI1qY7tJGf39841BdCgh7q629TgquO7CeVq97HMqf+9NZu3oCaZtcVicgEhxhS+ZY6h9KSWkGDhTiKO/9C+Tb7dpw71OZCEY1Kf/8p0RSFRUYwkprhXIYYAOCqjuW1Wtyh2G9y6/t/3cp438t/ypMQU1FMy4xMDARyuQI2YOHyrUG7hIw+HUgqGSbBCEqQjj9N3dJ65BXgWzQX25Q+/1twwbhQ2dGhgLyS2ytOlq03JR4wyxHLk+J6x+1//OExOwn00p9RtJFGdbW9q22L4CR7zPJ/ozXuU2mz01suQyQxS44sH6APJkWEziMqByeuyWi20fH943juW6sa3/9Sr/VoiMIYGcYPdFKdbPv9v+6Fpa7XJUQQylrkXZ6SuhhTWfI8FdaHRqZwL+9Xtw3HCpMQU1FqqqqSbjrCi8EAQgzDSQIwraNTCDDQgHAhCKrTUFlai9O2H5Bc3nEZSqmxlF5T4NAWerCM8YC+rF8nNl78RzJeucQJcafsssj//OExPYqU4Z0BtsK/W8KcUSy9sovow+njRMGKtxm+ua3envTN6YoPnSaW1rTPks7VlpESRtE2dKTslGrLH5hhhEZ0FG2/6f/ShDnOxFfek7mTfeSn/+7Zb2ap3etGVGWpjy0uaJoECgJg++5Xu/68NE+f2pMQU1FMy4xMDCqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqsATyf32CEoyQq2jKBgvqXAWvYqy2Lvzp0L85uXWJq/LPyguigB+qKZoJ6wn//OExPgq06pwBtsLNZwc1OsLTtes1f2iiRQ3L7y5hR8nFFhT7+3++f/3fa/bfLNK3S0Ypi1mEi1WuIc2aceWSyf/9qJzC57D4mOFpI6SHSNklS7zKezOidrqcxyV+j6aevmmm0mfRFEoWA0aBwnjjD5+744YczBZGHjiaDRxwoVm/aeaSBREJELDCYSQfDA0o0EBlTqCXht2dx/8oZQpUqC4TLnKGvSx1O5XRfT6gm8eKeRU5yoe+bqsznMyKV4X//OExN8kw8qIbtGPGOMtqOSsOjuWykUxuppFKsxTRbGmm/CzFpPm1rK+rLCXutrk4UIalpWjlOFQn6WJdF9UqmOZfFePMur1uVjQziyEEBFSGR//+2nlR2QwWaUh3kQome+f8q06Lp//9P3RX3ey70cEUUIwmbFWHpL0AgEwwBzE8FNGBk2MdTOIFMahFcRQGEr1gACAV7FzGKNzdC5DkOMgcSUOpUZW/6y4GWHX5gSxDVks0FyxhaVkPqy5HTUy//OExP8ts75kBOPLGbPXWYzpK4+ps8OpAJaJ7IVjaM4bOzMS2jxpKQggJbJ4I6QjLXF1YnrGK5kaiWPi+BaOg8iqI5Dwng+P4sYUHBLQ5mLSEll7FYQ9HR80v80acK5HuMaREQqTIVoJQMcQBogR4WVf///n+v/S8zpfy/GUFD7lNQr/9hbbEQEb+GpEIwDHEoBiqOLHygbJFttbJARoQQHoPiyO6TsudAbC5KvdVSAmAwyk+3VYVHwt6Lx/KxRH//OExPsv87JsBOMHGasWSudrnP77xT71GJz/nZ6+chGI/CePaK7bS9weyXdUJ6kXOiEPRsmVnESXprf5pp2vXvEO7q4trUr5bJHlkOhEGAwCCoxA9QQZyX/m1+jVWmdkkoqK90aXOV7Xe2vd26/9Kf9f1RjuYeYgcV5Io40YKEZCFt9xQ03yD7qMYEKME4AsGvSDFC4GYgliwkBCiE1bMZLcs6VvXTAD4KaqZOWypYUvSuxxYlH2sx6DoNo9X6Xt//OExO4rs+J0BNsLGGyr/+GOP2s+f/75hjcn5qDr0MNCeZ/pbF8aeY0zZ5I02GlxQJhETNWkukts6ntITMRIAxoWJ3iJsiXciTAVIiae0axVjv28vPD/cb/0VkMY7EUqvyiWRXVtepTsyetzUcveayI/7v/5lmcqvVJaOjtGNP04V80ZpQwUKiDA2x6yBlQRsEn0y1puLUFjKqgEkIQZd5M9G5qrWGTMRYBPMFaJG2Jpk1E555PtsbXodvXn6oTF//OExPItO+JsBMpFqc7Ez+w57b96T0zO5/UKR6T060zS8WJIqgJSIbjEQWFZiToaKma9HWZrNsXuvnLy6AjK2XHnLTAYPsDsiCiEFznPe6aSf/9S5rVVlUt5HZPfW7ot90p//t/X/eR44QVCLZblVyO7PFnDPFpMQU1FMy4xMDCqqqqqqqqqqqqABfdGipJAEN4P5FZgFNANLZXAsy4sbCCo9vY/b/X2TVza6CfI2VImk0FRsJYiH5DWJSKholst//OExPApq/p0BNMLN/1teyBjhxeszPy9bYXEtENrCliVIfpDskCGuAYXEFFlMczL7dWdxZAMMVRwuW0qCwyaJCzlY9V09GXdvlfvMzkaWIFcaJEOUjsQ9StInOV6t/+XXreaiJ06ylIZg8Y58XERLQWbXnpMQU1FMy4xMDCqqqqqqqqqqqqqqqqqqqqqqqqqqqqqwJ77yglksUyEBIRwoONEn8iMZ+rC1nUzTK1N9pus0b1lRSYAsNhYuBTkIEzJ//OExOonY754FsMK2YVFESf8a3WW7mxPc//99QqyKxKhQZrcfFpprsKMjyGbN+5ijUQOiUzvW9O9BZYizms5hxCq5bD7pMidaayTiruDiAgo1lFXQqofGvQhtmo3X//6pbeqkbsKFJUzWce4J01xsb7km54ZkERDJBAaFUQFDxixUbKBByMNAq7eStDFSpRovuj2gMRsZOiKj+hwclJJnxatQM4GgAejQDNAqqAyAHhOh6QIdEc/JmzS6fUiyMq5//OExOAk89J4FsJK2fLa24/xeZqnsqDdLsDOO4dR7RlfAhNq0SA6cIzRQHxMLI3oMSLuKpjxUOcHgBhw7Q60nfKPxpVbIcz3jLRqVRq/dL9x18UvO213EqjJjaS88gKjbyCjf168YrAVsRukkNMmWDVyPG1MQU1FMy4xMDBVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVUJA7Ll+7dyDiB7B1DE80VnflBbVSUPoUGHkukQMvXYzvbGRScGkkgqcSC4//OExP8sqr5QBNvQ9HxQsUINkHW41NYqY5pU7UaTTReNo3ilgjl5aJv+vrp+1yrHXNU/XwtJ8Wn1MJ/HMS3/Ex/T193yRTMt9HhwWLD8acY9TbalGiOKK7oXBwqkSXjIJnOp/1Vvv/r1VfPerSfd5n9adkoIQGmb1hGrAFZMiAzBlkeRFHUT2bFsW7LBwoZAiyK7lR6ICC6EiJGBmJcW07yDgxjxJKLcsJoUBTJAvpPDJFiZYyUexHym3AgR1NEg//OExN4kWwJ09sJQVV91ZZIB/K6K3PozG4nKVhD3bkpnytSS4LVGCKDiK1EOKop0j3c2nSLqxIIxkP1Ssj9G50ru1y0FrCwXS+P65rubdP9mqDYrvWrmBshgxLNlDcwo6Rzi/2KLf72tmMM0qxZj9fNtyt8P6pfdtQmHRBnyhx3hasWCIJgATUxUCVWXW9jdaVgBapH5ymC5NrTyp4X+h9obiwHfg6WSp/m7QM1qGZI4TWWayWmiFWauwZJTbAid//OExP8t+rpAAtvQvRycaKizRsicPIdUAaxklLIoGip55xZhEONO2pw3JlsK7EutREmgagY6Fs1f7u75YduRGz25W0nTu75c/O0t5rSOWZDyc+vsQoKbWOtCils/rW8/7Vd58b/kdk/ktW/J13iq75MJlODaHmqq4o2bWh1KDAoXuDCv0nMrpkQqxPp1n4i9BJWIuKyluyw0aqSqFxqffN3WVQa6rOexKDH7jzhOTLZRnanKeYv0r+3jLcULIndb//OExPot6544CtJNSPRjRNQSTisk06yNOWChPpBIoc/Ngp7g6tq9JJEiccFI7atyJi/8zBMRgINIBVTDCgwdMxs1coDI47BVIgxmasjwTd2J5hh1ZtuxS19Svx5+1Y+9+/S7mxZqpzhNW28GYK2sU0itRGgrTEFNRTMuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVUFm4425iqpHEDpNPSsB42aXPatWnIkojk9qtWsmJiYnoBQkJOXIMi7JG481SXZ//OExPUqe9IsMsGHUC3tTVpqLHEq5xLf/TnJORIgoScSUlJv28KJgEKb6WoCVATXqlPqqux/xqJbnxmq6xVlVm1DOpKWq5ayiQwroCVL6Gb9spG//U2Nc9VOlGbY41X9mL1VSjRqpea0sKqiSPwoC4RLTLJMQU1FMy4xMDCqqqqqqqqqqqqqqqqVUlQavoE0JCTxXtR+mEVZdEQu10kVwn1YzvMVtFURok+KEsj2SakY3j95HiRbZxnEGSWWS5HZ//OExOElLAIgXmGG9P/0Rf/cplRQYJSO38xTJpLJpXSqSaSSak4bm///YyjJZVK6TSTSSTSnCcLSWTSnm55LK1dKrJnCxVZNYqWD4wHi5RHCcJ1V1ubf/zckqsmkknV1dXVXX/91X+SikmCB//8WbULsxWpMQU1FMy4xMDCqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq//OExOonU4E5lHiTTKqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq',
+ 'пастила́': 'data:audio/mpeg;base64,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'
+};
+let recAudio=null;
+function playRec(key){
+  if(recAudio){ recAudio.pause(); }
+  recAudio=new Audio(REC[key]); recAudio.play().catch(()=>{});
+}
+/* ---------- озвучка ---------- */
+let ruVoice=null;
+function pickVoice(){
+  const vs=speechSynthesis.getVoices();
+  ruVoice = vs.find(v=>v.lang==='ru-RU') || vs.find(v=>v.lang&&v.lang.toLowerCase().startsWith('ru')) || null;
+}
+if('speechSynthesis' in window){ pickVoice(); speechSynthesis.onvoiceschanged=pickVoice; }
+function mkUtt(text, rate){
+  const u=new SpeechSynthesisUtterance(plain(text));
+  u.lang='ru-RU'; if(ruVoice) u.voice=ruVoice; u.rate=rate||0.85; u.pitch=1;
+  return u;
+}
+function speak(text, rate){
+  if(REC[text]){ stopSeq(); if('speechSynthesis' in window) speechSynthesis.cancel(); playRec(text); return; }
+  if(recAudio){ recAudio.pause(); }
+  if(!('speechSynthesis' in window)){ alert('Озвучка не поддерживается · 此瀏覽器不支援語音'); return; }
+  stopSeq(); speechSynthesis.cancel(); speechSynthesis.speak(mkUtt(text,rate));
+}
+const VOW = new Set(['А','Е','Ё','И','О','У','Ы','Э','Ю','Я']);
+function sayName(o){ speak(o.say, VOW.has(o.L)?0.55:0.72); }
+function saySound(o){ speak(o.snd, VOW.has(o.L)?0.55:0.6); }
+
+/* весь алфавит подряд */
+let seqOn=false, seqTimer=null;
+function stopSeq(){ seqOn=false; clearTimeout(seqTimer); updPlayAll(); }
+function playAll(){
+  if(!('speechSynthesis' in window)) return;
+  if(seqOn){ stopSeq(); speechSynthesis.cancel(); return; }
+  speechSynthesis.cancel(); seqOn=true; updPlayAll();
+  let i=0;
+  const next=()=>{
+    if(!seqOn || i>=L.length){ stopSeq(); return; }
+    const o=L[i++]; const u=mkUtt(o.say, VOW.has(o.L)?0.6:0.75);
+    u.onend=()=>{ seqTimer=setTimeout(next,180); };
+    u.onerror=()=>{ seqTimer=setTimeout(next,180); };
+    speechSynthesis.speak(u);
+  };
+  next();
+}
+function updPlayAll(){ const b=$('playAllBtn'); if(b) b.textContent = seqOn ? '⏹ '+UI.stop.ru+' · '+tx(UI.stop) : '🔊 '+UI.playAll.ru+' · '+tx(UI.playAll); }
+
+/* ---------- навигация ---------- */
+const stars = {}; let currentModule=null;
+function show(id, title){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  $(id).classList.add('active');
+  $('backBtn').style.display = id==='scr-home' ? 'none' : 'block';
+  $('topTitle').textContent = title || 'Русский алфавит';
+  window.scrollTo(0,0);
+}
+function goHome(){
+  if('speechSynthesis' in window){ speechSynthesis.cancel(); } stopSeq();
+  clearTimeout(qTimer);
+  show('scr-home'); renderHome();
+}
+function openModule(id){
+  currentModule=id;
+  if(id==='abc'){ renderAbc(); show('scr-abc','Азбука · '+tx(MODULES[0])); return; }
+  startQuiz(id);
+}
+function retryModule(){ currentModule && openModule(currentModule); }
+
+/* ---------- язык ---------- */
+function renderLangs(){
+  $('langs').innerHTML = LANGS.map(([k,t])=>`<button class="lang ${k===LANG?'on':''}" onclick="setLang('${k}')">${t}</button>`).join('');
+}
+function setLang(k){
+  LANG=k; try{localStorage.setItem('abc_lang',k);}catch(e){}
+  renderLangs(); renderStatic();
+  const act=document.querySelector('.screen.active').id;
+  if(act==='scr-home') renderHome();
+  if(act==='scr-abc') renderAbc();
+  if(act==='scr-letter') renderLetter();
+  if(act==='scr-quiz' && quiz) $('qinstr').innerHTML = `<b>${quiz.i+1} / ${quiz.rounds.length}</b>` + tri(quiz.rounds[quiz.i].instr);
+}
+function renderStatic(){
+  $('topSub').textContent = UI.sub.ru+' · '+tx(UI.sub);
+  $('heroSmall').textContent = UI.hero.ru+' '+tx(UI.hero);
+  updPlayAll();
+  $('retryBtn').textContent = '↺ '+UI.again.ru+' · '+tx(UI.again);
+  $('menuBtn').textContent = UI.menu.ru+' · '+tx(UI.menu);
+  $('clearBtn').textContent = '✕ '+UI.clear.ru+' · '+tx(UI.clear);
+  $('hWords').textContent = UI.words.ru+' · '+tx(UI.words);
+  $('hTrace').textContent = UI.trace.ru+' · '+tx(UI.trace);
+}
+
+/* ---------- дом ---------- */
+function renderHome(){
+  $('menu').innerHTML='';
+  MODULES.forEach((m,i)=>{
+    const d=document.createElement('div'); d.className='mitem'; d.onclick=()=>openModule(m.id);
+    const s=stars[m.id];
+    d.innerHTML=`<div class="mnum" style="background:${m.c}">${i+1}</div>
+      <div class="mtext"><div class="ru">${m.ru}</div><div class="sm">${m.en} · ${tx(m)}</div></div>
+      <div class="mstar">${s!==undefined?'★'.repeat(s)+'☆'.repeat(3-s):''}</div>`;
+    $('menu').appendChild(d);
+  });
+  const total=Object.values(stars).reduce((a,b)=>a+b,0);
+  $('topStars').textContent = total ? '★ '+total : '';
+}
+
+/* ---------- азбука ---------- */
+function renderAbc(){
+  $('abcInstr').innerHTML = tri(UI.abcI);
+  $('legend').innerHTML = [['vh','vs'],['cp'],['ch','cs'],['sg']].map(ks=>{
+    const k=KIND[ks[0]];
+    const lbl = ks[0][0]==='v' ? {ru:'гласные',x:{zh:'母音',ja:'母音',vi:'nguyên âm'}}
+             : ks[0]==='cp' ? {ru:'согласные',x:{zh:'子音',ja:'子音',vi:'phụ âm'}}
+             : ks[0]==='sg' ? {ru:'знаки',x:{zh:'符號',ja:'記号',vi:'dấu'}}
+             : {ru:'всегда тв./мягк.',x:{zh:'永遠硬／軟',ja:'常に硬／軟',vi:'luôn cứng/mềm'}};
+    return `<span><i style="background:${k.c}"></i>${lbl.ru} · ${lbl.x[LANG]}</span>`;
+  }).join('');
+  const g=$('agrid'); g.innerHTML='';
+  L.forEach((o,i)=>{
+    const c=document.createElement('div'); c.className='acard k-'+o.k;
+    c.innerHTML=`<div class="p">${o.L}${o.L.toLowerCase()}</div><div class="h">${o.L}${o.L.toLowerCase()}</div><div class="n">${o.nm.replace('\u0301','')}</div>`;
+    c.onclick=()=>{ curL=i; renderLetter(); show('scr-letter', o.L+o.L.toLowerCase()+' · '+o.nm.replace('\u0301','')); sayName(o); };
+    g.appendChild(c);
+  });
+}
+
+/* ---------- одна буква ---------- */
+let curL=0, traceUpper=true;
+function stepLetter(d){
+  curL=(curL+d+L.length)%L.length; renderLetter();
+  const o=L[curL]; $('topTitle').textContent=o.L+o.L.toLowerCase()+' · '+o.nm.replace('\u0301','');
+  sayName(o); window.scrollTo(0,0);
+}
+function renderLetter(){
+  const o=L[curL], k=KIND[o.k], lo=o.L.toLowerCase();
+  $('lpos').textContent = (curL+1)+' / 33';
+  $('lforms').innerHTML =
+    `<div class="form f-print"><div class="g">${o.L}${lo}</div><div class="cap">${UI.print.ru}<br>${tx(UI.print)}</div></div>
+     <div class="form f-ital"><div class="g">${o.L}${lo}</div><div class="cap">${UI.ital.ru}<br>${tx(UI.ital)}</div></div>
+     <div class="form f-hand"><div class="g">${o.L}${lo}</div><div class="cap">${UI.hand.ru}<br>${tx(UI.hand)}</div></div>`;
+  $('lsound').innerHTML =
+    `<div class="sndrow">
+       <button class="pill name" onclick="sayName(L[curL])">🔊 ${UI.name.ru} · ${tx(UI.name)}: <b>${acc(o.nm)}</b></button>
+       <button class="pill snd" onclick="saySound(L[curL])">🔊 ${UI.sound.ru} · ${tx(UI.sound)}: <span class="trn">${o.tr}</span></button>
+     </div>
+     <div class="kind"><span class="tag" style="background:${k.c};color:#fff">${k.ru}</span>
+       <span style="color:var(--plum-soft)"> ${k.en} · ${tx(k)}</span></div>
+     <div class="note tri">${tri(o.n)}</div>
+     ${o.hw?`<div class="hwnote tri"><b>${o.hw.ru}</b><br><span class="en">${o.hw.en}</span><br>${tx(o.hw)}</div>`:''}`;
+  $('lwords').innerHTML = o.w.map(w=>{
+    const d=W[w];
+    return `<div class="wrow" onclick="speak('${w}',0.8)">
+      <div class="wp">${acc(w,o.L)}</div><div class="wh">${plain(w)}</div>
+      <div class="wg">${lessonTag(d.l)}<br>${d.en} · ${tx(d)}</div><div class="snd">🔊</div></div>`;
+  }).join('');
+  $('traceGhost').textContent = traceUpper ? o.L : lo;
+  clearTrace();
+}
+function toggleCase(){ traceUpper=!traceUpper; $('traceGhost').textContent = traceUpper?L[curL].L:L[curL].L.toLowerCase(); clearTrace(); }
+
+/* ---------- прописи (рисование пальцем) ---------- */
+const cv=$('traceCv'), ctx=cv.getContext('2d'); let drawing=false, last=null;
+function fitCanvas(){
+  const r=cv.getBoundingClientRect(), dpr=window.devicePixelRatio||1;
+  if(!r.width) return;
+  cv.width=r.width*dpr; cv.height=r.height*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.lineCap='round'; ctx.lineJoin='round'; ctx.lineWidth=6; ctx.strokeStyle='#E0604F';
+}
+function clearTrace(){ requestAnimationFrame(()=>{ fitCanvas(); ctx.clearRect(0,0,cv.width,cv.height); }); }
+function ptr(e){ const r=cv.getBoundingClientRect(); return {x:e.clientX-r.left, y:e.clientY-r.top}; }
+cv.addEventListener('pointerdown',e=>{ drawing=true; last=ptr(e); cv.setPointerCapture(e.pointerId);
+  ctx.beginPath(); ctx.arc(last.x,last.y,3,0,Math.PI*2); ctx.fillStyle='#E0604F'; ctx.fill(); });
+cv.addEventListener('pointermove',e=>{ if(!drawing) return; const p=ptr(e);
+  ctx.beginPath(); ctx.moveTo(last.x,last.y); ctx.lineTo(p.x,p.y); ctx.stroke(); last=p; });
+['pointerup','pointercancel','pointerleave'].forEach(t=>cv.addEventListener(t,()=>{drawing=false;}));
+window.addEventListener('resize',()=>{ if($('scr-letter').classList.contains('active')) clearTrace(); });
+
+/* ---------- квизы ---------- */
+let quiz=null, qTimer=null;
+const ALL = L.map(o=>o.L);
+function distract(ans, map, n=3, lower=true){
+  const key=ans.toLowerCase();
+  let pool = Array.from((map[key]||'').replace(/\s/g,''));
+  pool = pool.filter(x=>x!==key);
+  const rest = shuffle(ALL.map(x=>x.toLowerCase()).filter(x=>x!==key && !pool.includes(x)));
+  const out = shuffle(pool).slice(0,n);
+  while(out.length<n) out.push(rest.shift());
+  return lower ? out : out.map(x=>x.toUpperCase());
+}
+function rListen(o){
+  const opts = shuffle([o.L, ...distract(o.L,HEAR,3,false)]).map(x=>({v:x, t:x+x.toLowerCase()}));
+  return {instr:QI.listen, show:()=>playBtn(), say:()=>sayName(o), ans:o.L, opts, reveal:o.L+o.L.toLowerCase()};
+}
+function rForm(o, kind){
+  const up = Math.random()<0.4 && !['Ъ','Ь','Ы'].includes(o.L) ? true : false;
+  const g = up ? o.L : o.L.toLowerCase();
+  const opts = shuffle([g, ...distract(o.L,LOOK,3,!up)]).map(x=>({v:x,t:x}));
+  const cls = kind==='hand' ? 'gh' : 'gi';
+  return {instr:QI[kind], show:()=>`<div class="${cls}">${g}</div>`, say:()=>sayName(o), sayAfter:true, ans:g, opts, reveal:g};
+}
+/* все пары (слово, позиция) для «буквы в слове» */
+const WORD_SLOTS = [];
+Object.keys(W).forEach(w=>{
+  const p=Array.from(plain(w));
+  p.forEach((c,i)=>{ if(/[а-яё]/i.test(c)) WORD_SLOTS.push({w,i,c:c.toLowerCase(),up:c!==c.toLowerCase()}); });
+});
+function rWord(slot){
+  const p=Array.from(plain(slot.w));
+  const shown = p.map((c,i)=> i===slot.i ? '<span class="gap">?</span>' : c).join('');
+  const ansL = slot.up ? slot.c.toUpperCase() : slot.c;
+  const opts = shuffle([ansL, ...distract(slot.c,HEAR,3,!slot.up)]).map(x=>({v:x,t:x}));
+  const d=W[slot.w];
+  return {instr:QI.word, show:()=>`<div class="gw">${shown}</div><div class="gloss">${d.en} · ${tx(d)}</div>`+playBtn(),
+          say:()=>speak(slot.w,0.75), ans:ansL, opts, reveal:ansL, after:()=>`<div class="gw">${acc(slot.w)}</div>`};
+}
+function rOrder(i){
+  const a=L[i-1].L, b=L[i].L, c=L[i+1].L;
+  const opts = shuffle([b, ...pick(ALL.filter(x=>x!==b && x!==a && x!==c),3)]).map(x=>({v:x,t:x}));
+  return {instr:QI.order, show:()=>`<div class="gs">${a} <span style="color:var(--coral-d)">?</span> ${c}</div>`,
+          say:()=>sayName(L[i]), sayAfter:true, ans:b, opts, reveal:b};
+}
+function playBtn(){ return `<button class="bigplay" onclick="playCurrent()">🔊 ${UI.listen.ru} · ${tx(UI.listen)}</button>`; }
+
+function startQuiz(kind){
+  let r=[];
+  const mid = ()=> 1+Math.floor(Math.random()*(L.length-2));
+  if(kind==='listen') r = pick(L,10).map(rListen);
+  if(kind==='hand')   r = pick(L,10).map(o=>rForm(o,'hand'));
+  if(kind==='ital'){
+    const tricky = L.filter(o=>'ТДИПЙШГБЗЛМ'.includes(o.L));
+    r = shuffle([...pick(tricky,7), ...pick(L.filter(o=>!tricky.includes(o)),3)]).map(o=>rForm(o,'ital'));
+  }
+  if(kind==='word')   r = pick(WORD_SLOTS,10).map(rWord);
+  if(kind==='order'){ const s=new Set(); while(s.size<10) s.add(mid()); r=[...s].map(rOrder); }
+  if(kind==='final'){
+    const s=new Set(); while(s.size<2) s.add(mid());
+    r = shuffle([
+      ...pick(L,3).map(rListen), ...pick(L,3).map(o=>rForm(o,'hand')),
+      ...pick(L,2).map(o=>rForm(o,'ital')), ...pick(WORD_SLOTS,2).map(rWord), ...[...s].map(rOrder)
+    ]);
+  }
+  quiz={rounds:r,i:0,score:0,kind};
+  const m=MODULES.find(x=>x.id===kind);
+  show('scr-quiz', m.ru);
+  nextRound();
+}
+function nextRound(){
+  const r=quiz.rounds[quiz.i];
+  $('qbar').style.width=(quiz.i/quiz.rounds.length*100)+'%';
+  $('qinstr').innerHTML=`<b>${quiz.i+1} / ${quiz.rounds.length}</b>`+tri(r.instr);
+  $('qshow').innerHTML=r.show();
+  $('qfb').textContent=''; $('qfb').className='feedback';
+  const box=$('qopts'); box.innerHTML='';
+  r.opts.forEach(o=>{
+    const b=document.createElement('div'); b.className='opt'; b.textContent=o.t; b.dataset.v=o.v;
+    b.onclick=()=>answer(b,o.v,r); box.appendChild(b);
+  });
+  if(!r.sayAfter) qTimer=setTimeout(()=>r.say(),350);
+}
+function playCurrent(){ quiz && quiz.rounds[quiz.i] && quiz.rounds[quiz.i].say(); }
+function answer(el,v,r){
+  const fb=$('qfb');
+  document.querySelectorAll('.opt').forEach(o=>o.classList.add('dim'));
+  el.classList.remove('dim');
+  if(v===r.ans){
+    el.classList.add('ok'); quiz.score++;
+    fb.textContent='✓ '+UI.ok.ru+' '+tx(UI.ok); fb.className='feedback ok';
+  }else{
+    el.classList.add('no');
+    document.querySelectorAll('.opt').forEach(o=>{ if(o.dataset.v===r.ans){o.classList.remove('dim');o.classList.add('ok');} });
+    fb.textContent=UI.no.ru+' '+r.reveal+' · '+tx(UI.no)+' '+r.reveal; fb.className='feedback no';
+  }
+  if(r.after) $('qshow').innerHTML = r.after() + `<div class="gloss">${$('qshow').querySelector('.gloss').innerHTML}</div>`;
+  r.say();
+  qTimer=setTimeout(()=>{
+    quiz.i++;
+    if(quiz.i<quiz.rounds.length) nextRound(); else finish(quiz.score, quiz.rounds.length);
+  }, 1700);
+}
+function finish(score,total){
+  const p=score/total, s = p>=0.9?3 : p>=0.65?2 : p>=0.4?1 : 0;
+  stars[currentModule]=Math.max(stars[currentModule]||0, s);
+  show('scr-result', 'Результат');
+  const t = s===3?UI.r3 : s>=1?UI.r1 : UI.r0;
+  $('rtitle').textContent = t.ru+' '+tx(t);
+  $('rstars').textContent = '★'.repeat(s)+'☆'.repeat(3-s);
+  $('rscore').textContent = score+' / '+total;
+  const m = s===3?UI.m3:UI.m1;
+  $('rmsg').innerHTML = m.ru+'<br>'+m.en+'<br>'+tx(m);
+}
+
+/* ---------- init ---------- */
+renderLangs(); renderStatic(); renderHome();
+</script>
+</body>
+</html>
